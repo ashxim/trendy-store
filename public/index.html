@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>بيوأكوا — سيروم تطويل وتكثيف الرموش | تريندي ستور</title>
-<meta name="description" content="بيوأكوا سيروم مغذي لتطويل وتكثيف الرموش. تركيبة آمنة، نتائج ملحوظة في أسابيع. الدفع عند الاستلام، توصيل مجاني.">
+<meta name="description" content="بيوأكوا سيروم مغذي لتطويل وتكثيف الرموش. تركيبة آمنة، نتائج ملحوظة في أسابيع. الدفع عند الاستلام.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -246,6 +246,77 @@
     background: linear-gradient(135deg, var(--purple), var(--purple-dark));
     color: #FFFFFF;
   }
+
+  @media (max-width: 639px){
+    h1{ font-size: clamp(2rem, 10vw, 3rem) !important; }
+    h2{ font-size: 1.6rem !important; }
+    .btn-primary{ font-size: 14px !important; padding: 14px 24px !important; }
+    .ph-frame.w-40.h-40{ width: 100px; height: 100px; }
+    .flex-col.md\:flex-row{ flex-direction: column; }
+    section{ padding: 60px 16px !important; }
+    .grid-cols-2.md\:grid-cols-4{ grid-template-columns: 1fr 1fr; }
+    .grid-cols-2.md\:grid-cols-4 > .row-span-2{ grid-column: span 2; }
+    .grid.sm\:grid-cols-2{ grid-template-columns: 1fr; }
+    .grid.grid-cols-2.gap-2{ grid-template-columns: 1fr; }
+    header{ padding: 0 12px; }
+    .max-w-md{ max-width: 100%; }
+    .sticky-cta .btn-primary{ font-size: 13px !important; padding: 12px 20px !important; }
+    .order-summary-card .sum-total{ font-size: 16px; }
+    .delivery-card{ padding: 12px; flex-wrap: wrap; }
+    .delivery-card .del-icon{ width: 30px; height: 30px; font-size: 15px; }
+    .delivery-card .del-label{ font-size: 12px; }
+    .delivery-card .del-price{ font-size: 13px; }
+    select.wilaya-select{ font-size: 13px; padding: 12px 32px 12px 12px !important; }
+    .rounded-3xl{ border-radius: 16px; }
+    .p-8.md\:p-14{ padding: 20px; }
+    .text-\[11vw\]{ font-size: clamp(1.8rem, 10vw, 2.8rem) !important; }
+    .mb-8{ margin-bottom: 20px; }
+    .py-20{ padding-top: 48px; padding-bottom: 48px; }
+    .wa-float{ left: 12px; bottom: 74px; width: 48px; height: 48px; }
+    .wa-float svg{ width: 22px; height: 22px; }
+  }
+
+  @media (min-width: 640px){
+    .sm\:flex-row{ flex-direction: row; }
+    .sm\:grid-cols-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 768px){
+    .md\:hidden{ display: none; }
+    .md\:inline-flex{ display: inline-flex; }
+    .md\:flex-row{ flex-direction: row; }
+    .md\:grid-cols-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .md\:grid-cols-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md\:grid-cols-4{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .md\:w-72{ width: 18rem; }
+    .md\:w-80{ width: 20rem; }
+    .md\:h-80{ height: 20rem; }
+    .md\:h-96{ height: 24rem; }
+    .md\:p-5{ padding: 1.25rem; }
+    .md\:p-8{ padding: 2rem; }
+    .md\:p-14{ padding: 3.5rem; }
+    .md\:px-5{ padding-left: 1.25rem; padding-right: 1.25rem; }
+    .md\:px-8{ padding-left: 2rem; padding-right: 2rem; }
+    .md\:pt-40{ padding-top: 10rem; }
+    .md\:pb-24{ padding-bottom: 6rem; }
+    .md\:text-base{ font-size: 1rem; }
+    .md\:text-lg{ font-size: 1.125rem; }
+    .md\:text-3xl{ font-size: 1.875rem; }
+    .md\:text-4xl{ font-size: 2.25rem; }
+    .md\:text-5xl{ font-size: 3rem; }
+    .md\:text-6xl{ font-size: 3.75rem; }
+    .md\:leading-\[1\.2\]{ line-height: 1.2; }
+    .md\:gap-12{ gap: 3rem; }
+    .md\:gap-8{ gap: 2rem; }
+    .md\:order-2{ order: 2; }
+    .md\:w-1\/2{ width: 50%; }
+    .md\:w-2\/5{ width: 40%; }
+    .md\:w-3\/5{ width: 60%; }
+  }
+
+  @media (min-width: 1024px){
+    .lg\:grid-cols-4{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
 </style>
 </head>
 <body>
@@ -303,7 +374,7 @@
       <div class="absolute w-64 h-64 md:w-80 md:h-80 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);"></div>
       <div class="float-wand relative z-10 w-64 h-80 md:w-72 md:h-96">
         <div class="ph-frame w-full h-full" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1); border-radius:24px;">
-          <img src="public/images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="object-fit:contain; padding:16px;" class="hover-scale">
+          <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="object-fit:contain; padding:16px;" class="hover-scale">
         </div>
       </div>
     </div>
@@ -323,7 +394,7 @@
         <div class="carousel-slide">
           <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
             <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="public/images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم تطويل الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+              <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم تطويل الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تطويل فعال</span>
@@ -335,7 +406,7 @@
         <div class="carousel-slide">
           <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
             <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="public/images/hero/KaylaBeauty.jpg" alt="تكثيف الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+              <img src="images/hero/KaylaBeauty.jpg" alt="تكثيف الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تكثيف ملحوظ</span>
@@ -347,7 +418,7 @@
         <div class="carousel-slide">
           <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
             <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="public/images/hero/bioaqua-serum.jpg" alt="تقوية الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+              <img src="images/hero/bioaqua-serum.jpg" alt="تقوية الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تقوية وحماية</span>
@@ -359,7 +430,7 @@
         <div class="carousel-slide">
           <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
             <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="public/images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="عناية بالرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+              <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="عناية بالرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">عناية يومية</span>
@@ -384,7 +455,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
-        <img src="public/images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم بيوأكوا" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم بيوأكوا" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
       <div class="reveal-scale rounded-2xl overflow-hidden aspect-[3/4] row-span-2 flex items-center justify-center p-6 text-center" style="background:linear-gradient(160deg, var(--surface-2), rgba(124,58,237,0.05)); border:1px solid var(--hairline);">
         <div>
@@ -396,13 +467,13 @@
         </div>
       </div>
       <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
-        <img src="public/images/hero/KaylaBeauty.jpg" alt="تطويل الرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/KaylaBeauty.jpg" alt="تطويل الرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
       <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
-        <img src="public/images/hero/bioaqua-serum.jpg" alt="عناية بالرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/bioaqua-serum.jpg" alt="عناية بالرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
       <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
-        <img src="public/images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم رموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم رموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
     </div>
   </div>
@@ -494,7 +565,7 @@
       <div class="reveal rounded-2xl p-6" style="background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-3" style="color:var(--gold);">★★★★★</div>
         <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
-          <img src="public/images/feedbacks/625046465_17997857555899492_8324864965829211798_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+          <img src="images/feedbacks/625046465_17997857555899492_8324864965829211798_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
         <p class="mb-4 text-sm" style="color:var(--ink-dim);">"صراحة ما توقعت النتيجة بهالسرعة. رموشي صارت أطول وأكثر كثافة. أحسست بالفرق بعد ثلاث أسابيع."</p>
         <div class="flex items-center gap-3">
@@ -505,7 +576,7 @@
       <div class="reveal rounded-2xl p-6" style="transition-delay:0.08s; background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-3" style="color:var(--gold);">★★★★★</div>
         <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
-          <img src="public/images/feedbacks/649207356_18001977803899492_4230145318400710179_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+          <img src="images/feedbacks/649207356_18001977803899492_4230145318400710179_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
         <p class="mb-4 text-sm" style="color:var(--ink-dim);">"جربت عدة منتجات من قبل بس هذا مختلف. التركيبة لطيفة وما سببت لي أي تهيج. رموشي أقوى وأطول وأجمل."</p>
         <div class="flex items-center gap-3">
@@ -516,7 +587,7 @@
       <div class="reveal rounded-2xl p-6" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-3" style="color:var(--gold);">★★★★★</div>
         <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
-          <img src="public/images/feedbacks/656441518_18004647623899492_1088895750541600609_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+          <img src="images/feedbacks/656441518_18004647623899492_1088895750541600609_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
         <p class="mb-4 text-sm" style="color:var(--ink-dim);">"الفرشاة ناعمة ودقيقة والتطبيق سهل جدًا. صار روتيني الليلي المفضل. أنصح الكل تجربه."</p>
         <div class="flex items-center gap-3">
@@ -529,16 +600,16 @@
 
   <div class="mt-8 max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
     <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]">
-      <img src="public/images/feedbacks/642638581_18001672253899492_6739858333480044737_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+      <img src="images/feedbacks/642638581_18001672253899492_6739858333480044737_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
     <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.05s;">
-      <img src="public/images/feedbacks/651881579_18002934410899492_4856857686605832903_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+      <img src="images/feedbacks/651881579_18002934410899492_4856857686605832903_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
     <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.1s;">
-      <img src="public/images/feedbacks/625977032_17997763139899492_5718501016847329763_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+      <img src="images/feedbacks/625977032_17997763139899492_5718501016847329763_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
     <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.15s;">
-      <img src="public/images/feedbacks/682762984_18009537839899492_6976942920724132569_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+      <img src="images/feedbacks/682762984_18009537839899492_6976942920724132569_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
   </div>
 </section>
@@ -550,10 +621,9 @@
       <span class="text-2xl md:text-3xl line-through" style="color:var(--ink-dim);">3,500 د.ج</span>
       <span class="price-shimmer font-display text-5xl md:text-6xl font-extrabold">1,900 د.ج</span>
     </div>
-    <p class="mb-6" style="color:var(--ink-dim);">الكمية محدودة بهذا السعر — توصيل مجاني، الدفع عند الاستلام.</p>
+    <p class="mb-6" style="color:var(--ink-dim);">الكمية محدودة بهذا السعر — الدفع عند الاستلام.</p>
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       <span class="badge badge-purple">بقي 24 قطعة فقط</span>
-      <span class="badge badge-purple">توصيل مجاني</span>
       <span class="badge badge-purple">شحن خلال 2-4 أيام</span>
     </div>
     <a href="#order" class="btn-primary inline-block rounded-full px-10 py-4 text-lg">اطلبي الآن بهذا السعر</a>
@@ -561,20 +631,13 @@
 </section>
 
 <section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
-  <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-4">
+  <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-4">
     <div class="reveal rounded-2xl p-7 text-center" style="background:var(--surface); border:1px solid var(--hairline);">
       <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
       </div>
       <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">الدفع عند الاستلام</h3>
       <p class="text-sm" style="color:var(--ink-dim);">لا حاجة لبطاقة بنكية. ادفعي عند استلام المنتج.</p>
-    </div>
-    <div class="reveal rounded-2xl p-7 text-center" style="transition-delay:0.08s; background:var(--surface); border:1px solid var(--hairline);">
-      <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:rgba(236,72,153,0.12);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </div>
-      <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">توصيل مجاني</h3>
-      <p class="text-sm" style="color:var(--ink-dim);">نوصّل لجميع الولايات بدون أي رسوم إضافية.</p>
     </div>
     <div class="reveal rounded-2xl p-7 text-center" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
       <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
