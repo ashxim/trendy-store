@@ -10,6 +10,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=Tajawal:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CNW1T9FYTH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CNW1T9FYTH');
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root{
@@ -745,8 +753,12 @@
     {w:"تقرت",h:850,o:500},{w:"جانت",h:2000,o:1000},{w:"المغير",h:850,o:500},{w:"المنيعة",h:900,o:-1}
   ];
 
-  document.getElementById("waFloat").href =
+  const waFloat = document.getElementById("waFloat");
+  waFloat.href =
     "https://wa.me/" + CONFIG.WHATSAPP_NUMBER + "?text=" + encodeURIComponent("مرحبًا! لدي سؤال حول " + CONFIG.PRODUCT_NAME);
+  waFloat.addEventListener("click", function(){
+    gtag('event', 'click', { event_category: 'whatsapp', event_label: 'WhatsApp Contact' });
+  });
 
   const rail = document.getElementById("spectrumRail");
   function onScroll(){
@@ -792,6 +804,7 @@
 
   document.querySelectorAll(".btn-primary").forEach(btn => {
     btn.addEventListener("click", function(e){
+      gtag('event', 'click', { event_category: 'cta', event_label: btn.textContent.trim().substring(0, 60) });
       const rect = btn.getBoundingClientRect();
       const ripple = document.createElement("span");
       const size = Math.max(rect.width, rect.height);
@@ -951,6 +964,7 @@
       submitBtn.style.display = "none";
       errorBox.classList.add("hidden");
       successBox.classList.remove("hidden");
+      gtag('event', 'generate_lead', { value: totalPrice, currency: 'DZD' });
     } catch (err){
       console.error("فشل إرسال الطلب:", err);
       errorBox.classList.remove("hidden");
