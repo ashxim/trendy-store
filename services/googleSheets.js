@@ -29,6 +29,11 @@ export async function saveToGoogleSheets(order) {
       }),
     })
 
+    if (!res.ok) {
+      const errText = await res.text()
+      console.error('[GoogleSheets] HTTP error:', res.status, errText)
+      return false
+    }
     return true
   } catch (error) {
     console.error('[GoogleSheets] Error:', error.message)
