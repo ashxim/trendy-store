@@ -722,13 +722,9 @@
   "use strict";
 
   const CONFIG = {
-    TELEGRAM_BOT_TOKEN: "YOUR_TELEGRAM_BOT_TOKEN",
-    TELEGRAM_CHAT_ID: "YOUR_TELEGRAM_CHAT_ID",
-    GOOGLE_SHEETS_WEBAPP_URL: "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL",
     WHATSAPP_NUMBER: "10000000000",
     PRODUCT_NAME: "بيوأكوا — سيروم تطويل وتكثيف الرموش",
     PRODUCT_PRICE: 1900,
-    OFFER_HOURS_FROM_NOW: 6
   };
 
   const DELIVERY_DATA = [
@@ -748,8 +744,6 @@
     {w:"بني عباس",h:1650,o:-1},{w:"عين صالح",h:1650,o:800},{w:"عين قزام",h:2000,o:-1},
     {w:"تقرت",h:850,o:500},{w:"جانت",h:2000,o:1000},{w:"المغير",h:850,o:500},{w:"المنيعة",h:900,o:-1}
   ];
-
-  const isPlaceholder = (v) => !v || v.indexOf("YOUR_") === 0;
 
   document.getElementById("waFloat").href =
     "https://wa.me/" + CONFIG.WHATSAPP_NUMBER + "?text=" + encodeURIComponent("مرحبًا! لدي سؤال حول " + CONFIG.PRODUCT_NAME);
@@ -911,62 +905,6 @@
     return ok;
   }
 
-  async function sendToTelegram(data){
-    if (isPlaceholder(CONFIG.TELEGRAM_BOT_TOKEN) || isPlaceholder(CONFIG.TELEGRAM_CHAT_ID)){
-      console.warn("[Demo] Telegram not configured — skipping.", data);
-      return;
-    }
-    const methodLabel = data.deliveryMethod === "home" ? "توصيل إلى المنزل" : "Stopdesk تسليم";
-    const text =
-      "\ud83d\udce6 \u0637\u0644\u0628 \u062c\u062f\u064a\u062f\n\n" +
-      "\ud83c\udfec \u0627\u0644\u0645\u062a\u062c\u0631: \u062a\u0631\u064a\u0646\u062f\u064a \u0633\u062a\u0648\u0631\n" +
-      "\ud83d\udce6 \u0627\u0644\u0645\u0646\u062a\u062c: " + CONFIG.PRODUCT_NAME + "\n\n" +
-      "\ud83d\udc64 \u0627\u0644\u0627\u0633\u0645: " + data.firstName + " " + data.lastName + "\n" +
-      "\ud83d\udcf1 \u0627\u0644\u0647\u0627\u062a\u0641: " + data.phone + "\n" +
-      "\ud83d\udccd \u0627\u0644\u0648\u0644\u0627\u064a\u0629: " + data.wilaya + "\n" +
-      "\ud83d\ude9a \u0637\u0631\u064a\u0642\u0629 \u0627\u0644\u062a\u0648\u0635\u064a\u0644: " + methodLabel + "\n" +
-      "\ud83d\udcb0 \u0633\u0639\u0631 \u0627\u0644\u062a\u0648\u0635\u064a\u0644: " + fmt(data.deliveryPrice) + "\n" +
-      "\ud83d\udcb0 \u0633\u0639\u0631 \u0627\u0644\u0645\u0646\u062a\u062c: " + fmt(CONFIG.PRODUCT_PRICE) + "\n" +
-      "\ud83d\udcb0 \u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a: " + fmt(data.totalPrice) + "\n\n" +
-      "\ud83d\udccd \u0627\u0644\u0639\u0646\u0648\u0627\u0646: " + data.address + "\n" +
-      "\ud83d\udcdd \u0645\u0644\u0627\u062d\u0638\u0627\u062a: " + (data.notes || "\u2014") + "\n\n" +
-      "\ud83d\udcc5 " + data.date + " \u2022 " + data.time;
-
-    await fetch("https://api.telegram.org/bot" + CONFIG.TELEGRAM_BOT_TOKEN + "/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CONFIG.TELEGRAM_CHAT_ID, text: text })
-    });
-  }
-
-  async function sendToSheets(data){
-    if (isPlaceholder(CONFIG.GOOGLE_SHEETS_WEBAPP_URL)){
-      console.warn("[Demo] Sheets not configured — skipping.", data);
-      return;
-    }
-    await fetch(CONFIG.GOOGLE_SHEETS_WEBAPP_URL, {
-      method: "POST", mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        product: CONFIG.PRODUCT_NAME,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone,
-        wilaya: data.wilaya,
-        deliveryMethod: data.deliveryMethod,
-        deliveryPrice: data.deliveryPrice,
-        productPrice: CONFIG.PRODUCT_PRICE,
-        totalPrice: data.totalPrice,
-        address: data.address,
-        notes: data.notes,
-        quantity: 1,
-        status: "Pending",
-        date: data.date,
-        time: data.time
-      })
-    });
-  }
-
   form.addEventListener("submit", async function(e){
     e.preventDefault();
     if (isSubmitting) return;
@@ -981,24 +919,33 @@
     submitLabel.appendChild(spin);
     submitLabel.append(" جارٍ إرسال الطلب...");
 
-    const now = new Date();
     const totalPrice = CONFIG.PRODUCT_PRICE + currentDeliveryPrice;
-    const data = {
-      firstName: form.firstName.value.trim(),
-      lastName: form.lastName.value.trim(),
-      phone: form.phone.value.trim(),
+    const payload = {
+      customerName: form.firstName.value.trim() + " " + form.lastName.value.trim(),
+      phoneNumber: form.phone.value.trim(),
       wilaya: wilayaSelect.value,
       deliveryMethod: selectedMethod,
-      deliveryPrice: currentDeliveryPrice,
-      totalPrice: totalPrice,
       address: form.address.value.trim(),
       notes: form.notes.value.trim(),
-      date: now.toLocaleDateString(),
-      time: now.toLocaleTimeString()
+      productName: CONFIG.PRODUCT_NAME,
+      productPrice: CONFIG.PRODUCT_PRICE,
+      deliveryPrice: currentDeliveryPrice,
+      totalPrice: totalPrice,
     };
 
     try {
-      await Promise.all([ sendToTelegram(data), sendToSheets(data) ]);
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+
+      if (!result.success) {
+        throw new Error(result.message || "API error");
+      }
+
       form.querySelectorAll("input, textarea, select").forEach(el => el.style.display = "none");
       form.querySelectorAll("label, .field .err-msg, .delivery-card, .wilaya-select, #deliveryMethods, #summarySection, #deliveryError").forEach(el => el.style.display = "none");
       submitBtn.style.display = "none";
