@@ -139,9 +139,6 @@
 
   .wave-tag{ font-size: 12px; font-weight:700; letter-spacing:0.02em; color: var(--purple); }
 
-  .feature-row > div{ border-top: 1px solid var(--hairline); padding: 16px 0; font-weight: 500; }
-  .feature-row:first-child > div{ border-top:none; }
-
   .sticky-cta{ position: fixed; right:0; left:0; bottom:0; z-index:60; transform: translateY(120%); transition: transform 0.45s cubic-bezier(.16,1,.3,1); }
   .sticky-cta.show{ transform: translateY(0); }
 
@@ -247,33 +244,46 @@
     color: #FFFFFF;
   }
 
+  .testimonials-scroll{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
+  .testimonials-scroll::-webkit-scrollbar{ display:none; }
+  .testimonial-card{ scroll-snap-align:start; flex: 0 0 280px; padding:16px; border-radius:16px; }
+  @media (min-width:768px){ .testimonial-card{ flex: 0 0 320px; } }
+
+  .gallery-scroll{ display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
+  .gallery-scroll::-webkit-scrollbar{ display:none; }
+
   @media (max-width: 639px){
-    h1{ font-size: clamp(2rem, 10vw, 3rem) !important; }
-    h2{ font-size: 1.6rem !important; }
-    .btn-primary{ font-size: 14px !important; padding: 14px 24px !important; }
-    .ph-frame.w-40.h-40{ width: 100px; height: 100px; }
-    .flex-col.md\:flex-row{ flex-direction: column; }
-    section{ padding: 40px 14px !important; }
-    .grid-cols-2.md\:grid-cols-4{ grid-template-columns: 1fr 1fr; }
-    .grid-cols-2.md\:grid-cols-4 > .row-span-2{ grid-column: span 2; }
-    .grid.sm\:grid-cols-2{ grid-template-columns: 1fr; }
-    .grid.grid-cols-2.gap-2{ grid-template-columns: 1fr; }
-    header{ padding: 0 12px; }
+    h1{ font-size: clamp(1.6rem, 8vw, 2.4rem) !important; }
+    h2{ font-size: 1.3rem !important; }
+    .btn-primary{ font-size: 13px !important; padding: 12px 20px !important; }
+    section{ padding: 32px 14px !important; }
+    header{ padding: 0 10px; }
     .max-w-md{ max-width: 100%; }
-    .sticky-cta .btn-primary{ font-size: 13px !important; padding: 12px 20px !important; }
-    .order-summary-card .sum-total{ font-size: 16px; }
-    .delivery-card{ padding: 12px; flex-wrap: wrap; }
-    .delivery-card .del-icon{ width: 30px; height: 30px; font-size: 15px; }
-    .delivery-card .del-label{ font-size: 12px; }
-    .delivery-card .del-price{ font-size: 13px; }
-    select.wilaya-select{ font-size: 13px; padding: 12px 32px 12px 12px !important; }
-    .rounded-3xl{ border-radius: 16px; }
-    .p-8.md\:p-14{ padding: 20px; }
-    .text-\[11vw\]{ font-size: clamp(1.8rem, 10vw, 2.8rem) !important; }
-    .mb-8{ margin-bottom: 20px; }
-    .py-20{ padding-top: 48px; padding-bottom: 48px; }
-    .wa-float{ left: 12px; bottom: 74px; width: 48px; height: 48px; }
-    .wa-float svg{ width: 22px; height: 22px; }
+    .sticky-cta .btn-primary{ font-size: 12px !important; padding: 10px 16px !important; }
+    .order-summary-card .sum-total{ font-size: 15px; }
+    .order-summary-card{ padding: 12px !important; }
+    .delivery-card{ padding: 10px 12px; flex-wrap: wrap; gap:8px; }
+    .delivery-card .del-icon{ width: 28px; height: 28px; font-size: 14px; }
+    .delivery-card .del-label{ font-size: 11px; }
+    .delivery-card .del-price{ font-size: 12px; }
+    select.wilaya-select{ font-size: 12px; padding: 10px 28px 10px 10px !important; }
+    .text-\[10vw\]{ font-size: clamp(1.4rem, 8vw, 2rem) !important; }
+    .mb-8{ margin-bottom: 16px; }
+    .wa-float{ left: 10px; bottom: 70px; width: 42px; height: 42px; }
+    .wa-float svg{ width: 20px; height: 20px; }
+    .sticky-cta{ padding: 8px 12px !important; }
+    .grid-cols-2.gap-3{ gap: 8px; }
+    .rounded-2xl{ border-radius: 12px; }
+    .rounded-xl{ border-radius: 10px; }
+    .p-5{ padding: 14px !important; }
+    .gap-3{ gap: 8px; }
+    .gap-4{ gap: 10px; }
+    .mb-6{ margin-bottom: 16px; }
+    .mt-4{ margin-top: 12px; }
+    #orderForm{ padding: 14px !important; }
+    .field input, .field textarea{ font-size: 13px !important; padding: 10px 12px !important; }
+    .testimonial-card{ flex: 0 0 240px; padding: 12px; }
+    .gallery-scroll .w-\[140px\]{ width: 110px; }
   }
 
   @media (min-width: 640px){
@@ -336,11 +346,11 @@
   <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.2), transparent 70%);"></div>
 
   <div class="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-    <div class="relative flex justify-center rise-2 md:order-2">
-      <div class="absolute w-56 h-56 md:w-72 md:h-72 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);"></div>
-      <div class="float-wand relative z-10 w-48 h-60 md:w-64 md:h-80">
-        <div class="ph-frame w-full h-full" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1); border-radius:20px;">
-          <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="object-fit:contain; padding:12px;" class="hover-scale">
+    <div class="relative flex justify-center items-center rise-2 md:order-2 min-h-[280px] md:min-h-[400px]">
+      <div class="absolute w-72 h-72 md:w-96 md:h-96 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%);"></div>
+      <div class="float-wand relative z-10 w-full max-w-[280px] md:max-w-[380px] aspect-[3/4]">
+        <div class="w-full h-full" style="border-radius:28px; overflow:hidden; box-shadow: 0 25px 50px -12px rgba(124,58,237,0.3);">
+          <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="width:100%; height:100%; object-fit:cover;" class="hover-scale">
         </div>
       </div>
     </div>
@@ -453,25 +463,22 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
       <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
-        <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم بيوأكوا" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم بيوأكوا" loading="lazy" class="w-full h-full" style="object-fit:cover; background:var(--surface);">
       </div>
-      <div class="reveal-scale rounded-xl overflow-hidden aspect-[3/4] row-span-2 flex items-center justify-center p-4 text-center" style="background:linear-gradient(160deg, var(--surface-2), rgba(124,58,237,0.05)); border:1px solid var(--hairline);">
+      <div class="reveal-scale rounded-xl overflow-hidden aspect-square md:aspect-[3/4] md:row-span-2 flex items-center justify-center p-4 text-center" style="background:linear-gradient(160deg, var(--surface-2), rgba(124,58,237,0.05)); border:1px solid var(--hairline);">
         <div>
-          <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+          <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-2" style="background:var(--purple-soft);">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16l-6.4 4.8L8 14l-6-4.8h7.6z"/></svg>
           </div>
-          <h3 class="font-display text-base font-bold mb-1" style="color:var(--ink);">الأكثر مبيعًا</h3>
+          <h3 class="font-display text-sm md:text-base font-bold mb-1" style="color:var(--ink);">الأكثر مبيعًا</h3>
           <p class="text-xs" style="color:var(--ink-dim);">أكثر من 1,200 عميلة وثقت بنا</p>
         </div>
       </div>
       <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
-        <img src="images/hero/KaylaBeauty.jpg" alt="تطويل الرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/KaylaBeauty.jpg" alt="تطويل الرموش" loading="lazy" class="w-full h-full" style="object-fit:cover; background:var(--surface);">
       </div>
       <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
-        <img src="images/hero/bioaqua-serum.jpg" alt="عناية بالرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
-      </div>
-      <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
-        <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم رموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
+        <img src="images/hero/bioaqua-serum.jpg" alt="عناية بالرموش" loading="lazy" class="w-full h-full" style="object-fit:cover; background:var(--surface);">
       </div>
     </div>
   </div>
@@ -518,40 +525,9 @@
   </div>
 </section>
 
-<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
-  <div class="max-w-4xl mx-auto">
-    <div class="reveal mb-6">
-      <span class="wave-tag">مكونات متميزة</span>
-      <div class="lash-divider"></div>
-      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">تركيبة علمية لعناية فائقة.</h2>
-    </div>
 
-    <div class="reveal rounded-xl overflow-hidden" style="background:var(--surface); border:1px solid var(--hairline);">
-      <div class="feature-row grid grid-cols-2 text-xs md:text-sm">
-        <div class="p-3 md:p-4 font-bold" style="color:var(--ink);">المكون</div>
-        <div class="p-3 md:p-4" style="color:var(--ink-dim);">الفائدة</div>
-      </div>
-      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
-        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">البيوتين</div>
-        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يقوي الرموش ويحفز نموها الطبيعي</div>
-      </div>
-      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
-        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">بانثينول</div>
-        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يرطب ويغذي الرموش ويمنحها المرونة</div>
-      </div>
-      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
-        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">ببتيدات</div>
-        <div class="px-3 md:px-4" style="color:var(--ink-dim);">تعزز كثافة الرموش وتطيل دورة نموها</div>
-      </div>
-      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
-        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">زيت الأرغان</div>
-        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يغذي بعمق ويمنح الرموش لمعانًا صحيًا</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t overflow-hidden" style="border-color:var(--hairline);">
   <div class="max-w-6xl mx-auto">
     <div class="reveal mb-6 max-w-xl">
       <span class="wave-tag">آراء العميلات</span>
@@ -559,55 +535,57 @@
       <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">ماذا تقول عميلاتنا.</h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-3">
-      <div class="reveal rounded-xl p-4" style="background:var(--surface); border:1px solid var(--hairline);">
+    <div class="testimonials-scroll">
+      <div class="testimonial-card" style="background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
-          <img src="images/feedbacks/625046465_17997857555899492_8324864965829211798_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+        <div class="zoom-frame w-full aspect-[3/4] rounded-lg mb-3 overflow-hidden">
+          <img src="images/feedbacks/625046465_17997857555899492_8324864965829211798_n.jpg" alt="صورة تقييم عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
         </div>
-        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"صراحة ما توقعت النتيجة بهالسرعة. رموشي صارت أطول وأكثر كثافة. أحسست بالفرق بعد ثلاث أسابيع."</p>
+        <p class="mb-3 text-xs leading-relaxed" style="color:var(--ink-dim);">"صراحة ما توقعت النتيجة بهالسرعة. رموشي صارت أطول وأكثر كثافة. أحسست بالفرق بعد ثلاث أسابيع."</p>
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">م.ن</div>
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style="background:var(--surface-2); color:var(--purple);">م.ن</div>
           <div class="text-xs">مريم ن. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
-      <div class="reveal rounded-xl p-4" style="transition-delay:0.08s; background:var(--surface); border:1px solid var(--hairline);">
+      <div class="testimonial-card" style="background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
-          <img src="images/feedbacks/649207356_18001977803899492_4230145318400710179_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+        <div class="zoom-frame w-full aspect-[3/4] rounded-lg mb-3 overflow-hidden">
+          <img src="images/feedbacks/649207356_18001977803899492_4230145318400710179_n.jpg" alt="صورة تقييم عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
         </div>
-        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"جربت عدة منتجات من قبل بس هذا مختلف. التركيبة لطيفة وما سببت لي أي تهيج. رموشي أقوى وأطول وأجمل."</p>
+        <p class="mb-3 text-xs leading-relaxed" style="color:var(--ink-dim);">"جربت عدة منتجات من قبل بس هذا مختلف. التركيبة لطيفة وما سببت لي أي تهيج. رموشي أقوى وأطول وأجمل."</p>
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">س.ع</div>
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style="background:var(--surface-2); color:var(--purple);">س.ع</div>
           <div class="text-xs">سارة ع. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
-      <div class="reveal rounded-xl p-4" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
+      <div class="testimonial-card" style="background:var(--surface); border:1px solid var(--hairline);">
         <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
-          <img src="images/feedbacks/656441518_18004647623899492_1088895750541600609_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+        <div class="zoom-frame w-full aspect-[3/4] rounded-lg mb-3 overflow-hidden">
+          <img src="images/feedbacks/656441518_18004647623899492_1088895750541600609_n.jpg" alt="صورة تقييم عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
         </div>
-        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"الفرشاة ناعمة ودقيقة والتطبيق سهل جدًا. صار روتيني الليلي المفضل. أنصح الكل تجربه."</p>
+        <p class="mb-3 text-xs leading-relaxed" style="color:var(--ink-dim);">"الفرشاة ناعمة ودقيقة والتطبيق سهل جدًا. صار روتيني الليلي المفضل. أنصح الكل تجربه."</p>
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">ن.ح</div>
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style="background:var(--surface-2); color:var(--purple);">ن.ح</div>
           <div class="text-xs">نورة ح. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="mt-4 max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2">
-    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]">
-      <img src="images/feedbacks/642638581_18001672253899492_6739858333480044737_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
-    </div>
-    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.05s;">
-      <img src="images/feedbacks/651881579_18002934410899492_4856857686605832903_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
-    </div>
-    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.1s;">
-      <img src="images/feedbacks/625977032_17997763139899492_5718501016847329763_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
-    </div>
-    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.15s;">
-      <img src="images/feedbacks/682762984_18009537839899492_6976942920724132569_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
+  <div class="mt-4 max-w-6xl mx-auto">
+    <div class="gallery-scroll">
+      <div class="reveal-scale zoom-frame rounded-lg overflow-hidden shrink-0 w-[140px] md:w-[200px] aspect-[3/4]">
+        <img src="images/feedbacks/642638581_18001672253899492_6739858333480044737_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="reveal-scale zoom-frame rounded-lg overflow-hidden shrink-0 w-[140px] md:w-[200px] aspect-[3/4]">
+        <img src="images/feedbacks/651881579_18002934410899492_4856857686605832903_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="reveal-scale zoom-frame rounded-lg overflow-hidden shrink-0 w-[140px] md:w-[200px] aspect-[3/4]">
+        <img src="images/feedbacks/625977032_17997763139899492_5718501016847329763_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="reveal-scale zoom-frame rounded-lg overflow-hidden shrink-0 w-[140px] md:w-[200px] aspect-[3/4]">
+        <img src="images/feedbacks/682762984_18009537839899492_6976942920724132569_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
     </div>
   </div>
 </section>
