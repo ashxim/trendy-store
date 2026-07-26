@@ -253,7 +253,7 @@
     .btn-primary{ font-size: 14px !important; padding: 14px 24px !important; }
     .ph-frame.w-40.h-40{ width: 100px; height: 100px; }
     .flex-col.md\:flex-row{ flex-direction: column; }
-    section{ padding: 60px 16px !important; }
+    section{ padding: 40px 14px !important; }
     .grid-cols-2.md\:grid-cols-4{ grid-template-columns: 1fr 1fr; }
     .grid-cols-2.md\:grid-cols-4 > .row-span-2{ grid-column: span 2; }
     .grid.sm\:grid-cols-2{ grid-template-columns: 1fr; }
@@ -324,340 +324,338 @@
 <div class="spectrum-rail" id="spectrumRail"></div>
 
 <header class="fixed top-0 right-0 left-0 z-50 glass" style="margin-top:3px;">
-  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
-    <span class="font-display text-lg font-bold" style="color:var(--ink);" <span style="color:var(--purple);">TRENDY STORE</span></span>
-    <a href="#order" class="hidden md:inline-flex btn-primary text-sm px-5 py-2.5 rounded-full">اطلب الآن</a>
+  <div class="max-w-6xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
+    <span class="font-display text-base font-bold" style="color:var(--ink);"><span style="color:var(--purple);">TRENDY STORE</span></span>
+    <a href="#order" class="hidden md:inline-flex btn-primary text-xs px-4 py-2 rounded-full">اطلب الآن</a>
   </div>
 </header>
 
-<section class="relative pt-28 pb-16 md:pt-40 md:pb-24 px-5 md:px-8 overflow-hidden">
+<section class="relative pt-20 pb-8 md:pt-28 md:pb-12 px-5 md:px-8 overflow-hidden">
   <div class="grain"></div>
   <div class="purple-glow-bg"></div>
   <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.2), transparent 70%);"></div>
-  <div class="absolute top-40 -right-20 w-72 h-72 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(236,72,153,0.15), transparent 70%); animation-delay:1.2s;"></div>
 
-  <div class="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-12 items-center">
+  <div class="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+    <div class="relative flex justify-center rise-2 md:order-2">
+      <div class="absolute w-56 h-56 md:w-72 md:h-72 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);"></div>
+      <div class="float-wand relative z-10 w-48 h-60 md:w-64 md:h-80">
+        <div class="ph-frame w-full h-full" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1); border-radius:20px;">
+          <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="object-fit:contain; padding:12px;" class="hover-scale">
+        </div>
+      </div>
+    </div>
+
     <div>
-      <div class="flex flex-wrap gap-2 mb-6 rise-1">
+      <div class="flex flex-wrap gap-2 mb-4 rise-1">
         <span class="badge badge-purple">الدفع عند الاستلام</span>
-       
       </div>
 
       <div class="lash-divider rise-2"></div>
 
-      <h1 class="rise-2 font-display text-[11vw] leading-[1.15] md:text-5xl md:leading-[1.2] mb-5 font-extrabold" style="color:var(--ink);">
-        رموشك أطول<br>بثقة <span style="color:var(--purple);">طبيعية</span> <span style="font-size:0.5em; display:block; margin-top:8px; font-weight:600; color:var(--ink-dim); letter-spacing:0.02em;">BIOAQUA LASH SERUM</span>
+      <h1 class="rise-2 font-display text-[10vw] leading-[1.1] md:text-4xl md:leading-[1.15] mb-3 font-extrabold" style="color:var(--ink);">
+        رموشك أطول<br>بثقة <span style="color:var(--purple);">طبيعية</span> <span style="font-size:0.45em; display:block; margin-top:6px; font-weight:600; color:var(--ink-dim); letter-spacing:0.02em;">BIOAQUA LASH SERUM</span>
       </h1>
 
-      <p class="rise-3 text-base md:text-lg mb-8 max-w-md" style="color:var(--ink-dim);">
+      <p class="rise-3 text-sm md:text-base mb-5 max-w-md" style="color:var(--ink-dim);">
         <strong style="font-weight:700;">بيوأكوا <span style="color:var(--purple);">BIOAQUA</span></strong> — سيروم مغذي لتطويل وتكثيف الرموش. تركيبة متطورة تمنحك رموشًا أطول وأكثر كثافة في أسابيع. نتائج ملحوظة، عناية لطيفة.
       </p>
 
-      <div class="rise-4 flex flex-col sm:flex-row gap-3 mb-8">
-        <a href="#order" id="heroCta" class="btn-primary text-center rounded-full px-8 py-4 text-base">اطلب الآن — 1,900 د.ج</a>
-        <a href="#showcase" class="text-center rounded-full px-8 py-4 text-base border" style="border-color:var(--hairline); color:var(--ink-dim);">شاهد المنتج</a>
+      <div class="rise-4 flex flex-col sm:flex-row gap-2 mb-5">
+        <a href="#order" id="heroCta" class="btn-primary text-center rounded-full px-6 py-3.5 text-sm">اطلب الآن — 1,900 د.ج</a>
+        <a href="#showcase" class="text-center rounded-full px-6 py-3.5 text-sm border" style="border-color:var(--hairline); color:var(--ink-dim);">شاهد المنتج</a>
       </div>
 
       <div class="rise-4 flex items-center gap-4">
-        <div class="flex items-center gap-3 px-4 py-3 rounded-xl" style="background:var(--surface-2); border:1px solid rgba(124,58,237,0.15);">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl" style="background:var(--surface-2); border:1px solid rgba(124,58,237,0.15);">
           <div class="flex -space-x-2 space-x-reverse">
-            <div class="w-7 h-7 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
-            <div class="w-7 h-7 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
-            <div class="w-7 h-7 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
+            <div class="w-6 h-6 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
+            <div class="w-6 h-6 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
+            <div class="w-6 h-6 rounded-full border-2 border-white" style="background:var(--purple-soft);"></div>
           </div>
           <span class="text-xs" style="color:var(--ink-dim);">أكثر من <strong style="color:var(--ink);">1,200</strong> عميلة وثقت بنا</span>
         </div>
       </div>
     </div>
-
-    <div class="relative flex justify-center rise-2">
-      <div class="absolute w-64 h-64 md:w-80 md:h-80 rounded-full glow-pulse" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);"></div>
-      <div class="float-wand relative z-10 w-64 h-80 md:w-72 md:h-96">
-        <div class="ph-frame w-full h-full" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1); border-radius:24px;">
-          <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="سيروم بيوأكوا لتطويل الرموش" loading="lazy" style="object-fit:contain; padding:16px;" class="hover-scale">
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<section id="showcase" class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section id="showcase" class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-12 max-w-xl">
+    <div class="reveal mb-6 max-w-xl">
       <span class="wave-tag">فوائد السيروم</span>
       <div class="lash-divider"></div>
-      <h2 class="font-display text-3xl md:text-4xl mt-3 font-bold" style="color:var(--ink);">عناية متكاملة لرموش أكثر جمالًا.</h2>
+      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">عناية متكاملة لرموش أكثر جمالًا.</h2>
     </div>
 
     <div class="reveal-scale relative">
-      <div class="carousel-track rounded-3xl" id="carouselTrack">
+      <div class="carousel-track rounded-2xl" id="carouselTrack">
         <div class="carousel-slide">
-          <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
-            <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم تطويل الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+          <div class="zoom-frame p-5 md:p-10 flex flex-col md:flex-row items-center gap-4 md:gap-6 rounded-2xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
+            <div class="ph-frame w-20 h-20 md:w-32 md:h-32 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
+              <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم تطويل الرموش" loading="lazy" style="object-fit:contain; padding:8px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تطويل فعال</span>
-              <h3 class="font-display text-2xl mt-2 mb-2 font-bold" style="color:var(--ink);">أطول بشكل طبيعي</h3>
-              <p style="color:var(--ink-dim);">تركيبة غنية بالفيتامينات تغذي بصيلات الرموش وتحفز طولها الطبيعي. نتائج ملحوظة خلال أسابيع من الاستخدام المنتظم.</p>
+              <h3 class="font-display text-lg md:text-xl mt-1 mb-1 font-bold" style="color:var(--ink);">أطول بشكل طبيعي</h3>
+              <p class="text-sm" style="color:var(--ink-dim);">تركيبة غنية بالفيتامينات تغذي بصيلات الرموش وتحفز طولها الطبيعي. نتائج ملحوظة خلال أسابيع من الاستخدام المنتظم.</p>
             </div>
           </div>
         </div>
         <div class="carousel-slide">
-          <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
-            <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="images/hero/KaylaBeauty.jpg" alt="تكثيف الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+          <div class="zoom-frame p-5 md:p-10 flex flex-col md:flex-row items-center gap-4 md:gap-6 rounded-2xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
+            <div class="ph-frame w-20 h-20 md:w-32 md:h-32 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
+              <img src="images/hero/KaylaBeauty.jpg" alt="تكثيف الرموش" loading="lazy" style="object-fit:contain; padding:8px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تكثيف ملحوظ</span>
-              <h3 class="font-display text-2xl mt-2 mb-2 font-bold" style="color:var(--ink);">كثافة وجاذبية</h3>
-              <p style="color:var(--ink-dim);">يمنح رموشك مظهرًا أكثر كثافة وامتلاءً. مع الاستمرار، تلاحظين فرقًا واضحًا في حجم الرموش وقوتها.</p>
+              <h3 class="font-display text-lg md:text-xl mt-1 mb-1 font-bold" style="color:var(--ink);">كثافة وجاذبية</h3>
+              <p class="text-sm" style="color:var(--ink-dim);">يمنح رموشك مظهرًا أكثر كثافة وامتلاءً. مع الاستمرار، تلاحظين فرقًا واضحًا في حجم الرموش وقوتها.</p>
             </div>
           </div>
         </div>
         <div class="carousel-slide">
-          <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
-            <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="images/hero/bioaqua-serum.jpg" alt="تقوية الرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+          <div class="zoom-frame p-5 md:p-10 flex flex-col md:flex-row items-center gap-4 md:gap-6 rounded-2xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
+            <div class="ph-frame w-20 h-20 md:w-32 md:h-32 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
+              <img src="images/hero/bioaqua-serum.jpg" alt="تقوية الرموش" loading="lazy" style="object-fit:contain; padding:8px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">تقوية وحماية</span>
-              <h3 class="font-display text-2xl mt-2 mb-2 font-bold" style="color:var(--ink);">أقوى وأكثر صحة</h3>
-              <p style="color:var(--ink-dim);">يقوي الرموش من الجذور ويقلل التساقط. تركيبة لطيفة تغذي كل رمشة وتمنحها المرونة والقوة.</p>
+              <h3 class="font-display text-lg md:text-xl mt-1 mb-1 font-bold" style="color:var(--ink);">أقوى وأكثر صحة</h3>
+              <p class="text-sm" style="color:var(--ink-dim);">يقوي الرموش من الجذور ويقلل التساقط. تركيبة لطيفة تغذي كل رمشة وتمنحها المرونة والقوة.</p>
             </div>
           </div>
         </div>
         <div class="carousel-slide">
-          <div class="zoom-frame p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 rounded-3xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
-            <div class="ph-frame w-40 h-40 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
-              <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="عناية بالرموش" loading="lazy" style="object-fit:contain; padding:10px;" class="hover-scale">
+          <div class="zoom-frame p-5 md:p-10 flex flex-col md:flex-row items-center gap-4 md:gap-6 rounded-2xl" style="background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(243,238,255,0.6)); border:1px solid var(--hairline);">
+            <div class="ph-frame w-20 h-20 md:w-32 md:h-32 shrink-0" style="background:var(--surface); border:2px solid rgba(124,58,237,0.1);">
+              <img src="images/hero/754373053_18021625802899492_16673206255071412_n.jpg" alt="عناية بالرموش" loading="lazy" style="object-fit:contain; padding:8px;" class="hover-scale">
             </div>
             <div>
               <span class="wave-tag">عناية يومية</span>
-              <h3 class="font-display text-2xl mt-2 mb-2 font-bold" style="color:var(--ink);">روتين جمالي بسيط</h3>
-              <p style="color:var(--ink-dim);">استخدام يومي بسيط — ضعي السيروم مرة يوميًا على خط الرموش النظيف. دقيقتين فقط تمنحك إطلالة ساحرة.</p>
+              <h3 class="font-display text-lg md:text-xl mt-1 mb-1 font-bold" style="color:var(--ink);">روتين جمالي بسيط</h3>
+              <p class="text-sm" style="color:var(--ink-dim);">استخدام يومي بسيط — ضعي السيروم مرة يوميًا على خط الرموش النظيف. دقيقتين فقط تمنحك إطلالة ساحرة.</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex justify-center gap-2 mt-6" id="carouselDots"></div>
+      <div class="flex justify-center gap-2 mt-4" id="carouselDots"></div>
     </div>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-12 max-w-xl">
+    <div class="reveal mb-6 max-w-xl">
       <span class="wave-tag">لماذا بيوأكوا</span>
       <div class="lash-divider"></div>
-      <h2 class="font-display text-3xl md:text-4xl mt-3 font-bold" style="color:var(--ink);">السر وراء رموش أكثر جمالًا.</h2>
+      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">السر وراء رموش أكثر جمالًا.</h2>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
         <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم بيوأكوا" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
-      <div class="reveal-scale rounded-2xl overflow-hidden aspect-[3/4] row-span-2 flex items-center justify-center p-6 text-center" style="background:linear-gradient(160deg, var(--surface-2), rgba(124,58,237,0.05)); border:1px solid var(--hairline);">
+      <div class="reveal-scale rounded-xl overflow-hidden aspect-[3/4] row-span-2 flex items-center justify-center p-4 text-center" style="background:linear-gradient(160deg, var(--surface-2), rgba(124,58,237,0.05)); border:1px solid var(--hairline);">
         <div>
-          <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16l-6.4 4.8L8 14l-6-4.8h7.6z"/></svg>
+          <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16l-6.4 4.8L8 14l-6-4.8h7.6z"/></svg>
           </div>
-          <h3 class="font-display text-lg font-bold mb-2" style="color:var(--ink);">الأكثر مبيعًا</h3>
-          <p class="text-sm" style="color:var(--ink-dim);">أكثر من 1,200 عميلة وثقت بنا</p>
+          <h3 class="font-display text-base font-bold mb-1" style="color:var(--ink);">الأكثر مبيعًا</h3>
+          <p class="text-xs" style="color:var(--ink-dim);">أكثر من 1,200 عميلة وثقت بنا</p>
         </div>
       </div>
-      <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
+      <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
         <img src="images/hero/KaylaBeauty.jpg" alt="تطويل الرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
-      <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
+      <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
         <img src="images/hero/bioaqua-serum.jpg" alt="عناية بالرموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
-      <div class="reveal-scale zoom-frame rounded-2xl overflow-hidden aspect-square">
+      <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-square">
         <img src="images/hero/091c71bb6e3617d3ea089fd346b4c10f.jpg" alt="سيروم رموش" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface); border:2px solid rgba(124,58,237,0.08);">
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-12 max-w-xl">
+    <div class="reveal mb-6 max-w-xl">
       <span class="wave-tag">مميزات المنتج</span>
       <div class="lash-divider"></div>
-      <h2 class="font-display text-3xl md:text-4xl mt-3 font-bold" style="color:var(--ink);">لماذا تختارين بيوأكوا؟</h2>
+      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">لماذا تختارين بيوأكوا؟</h2>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="reveal benefit-card rounded-2xl p-6" style="background:var(--surface); border:1px solid var(--hairline);">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="reveal benefit-card rounded-xl p-4" style="background:var(--surface); border:1px solid var(--hairline);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
         </div>
-        <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">تركيبة مغذية</h3>
-        <p class="text-sm" style="color:var(--ink-dim);">غنية بالفيتامينات والبيوتين لتغذية الرموش من الجذور وتعزيز نموها الصحي.</p>
+        <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">تركيبة مغذية</h3>
+        <p class="text-xs" style="color:var(--ink-dim);">غنية بالفيتامينات والبيوتين لتغذية الرموش من الجذور وتعزيز نموها الصحي.</p>
       </div>
-      <div class="reveal benefit-card rounded-2xl p-6" style="transition-delay:0.05s; background:var(--surface); border:1px solid var(--hairline);">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:rgba(236,72,153,0.12);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M12 22c5-4 8-8 8-13a8 8 0 1 0-16 0c0 5 3 9 8 13z"/></svg>
+      <div class="reveal benefit-card rounded-xl p-4" style="transition-delay:0.05s; background:var(--surface); border:1px solid var(--hairline);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center mb-3" style="background:rgba(236,72,153,0.12);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M12 22c5-4 8-8 8-13a8 8 0 1 0-16 0c0 5 3 9 8 13z"/></svg>
         </div>
-        <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">لطيف وآمن</h3>
-        <p class="text-sm" style="color:var(--ink-dim);">خالي من المواد القاسية. مناسب لمنطقة العين ولا يسبب تهيجًا.</p>
+        <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">لطيف وآمن</h3>
+        <p class="text-xs" style="color:var(--ink-dim);">خالي من المواد القاسية. مناسب لمنطقة العين ولا يسبب تهيجًا.</p>
       </div>
-      <div class="reveal benefit-card rounded-2xl p-6" style="transition-delay:0.1s; background:var(--surface); border:1px solid var(--hairline);">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <div class="reveal benefit-card rounded-xl p-4" style="transition-delay:0.1s; background:var(--surface); border:1px solid var(--hairline);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
-        <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">نتائج سريعة</h3>
-        <p class="text-sm" style="color:var(--ink-dim);">تلاحظين الفرق خلال 4-6 أسابيع من الاستخدام المنتظم واليومي.</p>
+        <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">نتائج سريعة</h3>
+        <p class="text-xs" style="color:var(--ink-dim);">تلاحظين الفرق خلال 4-6 أسابيع من الاستخدام المنتظم واليومي.</p>
       </div>
-      <div class="reveal benefit-card rounded-2xl p-6" style="transition-delay:0.15s; background:var(--surface); border:1px solid var(--hairline);">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:rgba(212,168,83,0.14);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M4 12l6 6L20 6"/></svg>
+      <div class="reveal benefit-card rounded-xl p-4" style="transition-delay:0.15s; background:var(--surface); border:1px solid var(--hairline);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center mb-3" style="background:rgba(212,168,83,0.14);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M4 12l6 6L20 6"/></svg>
         </div>
-        <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">فرشاة دقيقة</h3>
-        <p class="text-sm" style="color:var(--ink-dim);">فرشاة رفيعة ودقيقة لتطبيق سهل ومريح على خط الرموش دون تهيج.</p>
+        <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">فرشاة دقيقة</h3>
+        <p class="text-xs" style="color:var(--ink-dim);">فرشاة رفيعة ودقيقة لتطبيق سهل ومريح على خط الرموش دون تهيج.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-4xl mx-auto">
-    <div class="reveal mb-12">
+    <div class="reveal mb-6">
       <span class="wave-tag">مكونات متميزة</span>
       <div class="lash-divider"></div>
-      <h2 class="font-display text-3xl md:text-4xl mt-3 font-bold" style="color:var(--ink);">تركيبة علمية لعناية فائقة.</h2>
+      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">تركيبة علمية لعناية فائقة.</h2>
     </div>
 
-    <div class="reveal rounded-2xl overflow-hidden" style="background:var(--surface); border:1px solid var(--hairline);">
-      <div class="feature-row grid grid-cols-2 text-sm md:text-base">
-        <div class="p-4 md:p-5 font-bold" style="color:var(--ink);">المكون</div>
-        <div class="p-4 md:p-5" style="color:var(--ink-dim);">الفائدة</div>
+    <div class="reveal rounded-xl overflow-hidden" style="background:var(--surface); border:1px solid var(--hairline);">
+      <div class="feature-row grid grid-cols-2 text-xs md:text-sm">
+        <div class="p-3 md:p-4 font-bold" style="color:var(--ink);">المكون</div>
+        <div class="p-3 md:p-4" style="color:var(--ink-dim);">الفائدة</div>
       </div>
-      <div class="feature-row grid grid-cols-2 text-sm md:text-base items-center">
-        <div class="px-4 md:px-5 font-bold" style="color:var(--purple);">البيوتين</div>
-        <div class="px-4 md:px-5" style="color:var(--ink-dim);">يقوي الرموش ويحفز نموها الطبيعي</div>
+      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
+        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">البيوتين</div>
+        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يقوي الرموش ويحفز نموها الطبيعي</div>
       </div>
-      <div class="feature-row grid grid-cols-2 text-sm md:text-base items-center">
-        <div class="px-4 md:px-5 font-bold" style="color:var(--purple);">بانثينول</div>
-        <div class="px-4 md:px-5" style="color:var(--ink-dim);">يرطب ويغذي الرموش ويمنحها المرونة</div>
+      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
+        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">بانثينول</div>
+        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يرطب ويغذي الرموش ويمنحها المرونة</div>
       </div>
-      <div class="feature-row grid grid-cols-2 text-sm md:text-base items-center">
-        <div class="px-4 md:px-5 font-bold" style="color:var(--purple);">ببتيدات</div>
-        <div class="px-4 md:px-5" style="color:var(--ink-dim);">تعزز كثافة الرموش وتطيل دورة نموها</div>
+      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
+        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">ببتيدات</div>
+        <div class="px-3 md:px-4" style="color:var(--ink-dim);">تعزز كثافة الرموش وتطيل دورة نموها</div>
       </div>
-      <div class="feature-row grid grid-cols-2 text-sm md:text-base items-center">
-        <div class="px-4 md:px-5 font-bold" style="color:var(--purple);">زيت الأرغان</div>
-        <div class="px-4 md:px-5" style="color:var(--ink-dim);">يغذي بعمق ويمنح الرموش لمعانًا صحيًا</div>
+      <div class="feature-row grid grid-cols-2 text-xs md:text-sm items-center">
+        <div class="px-3 md:px-4 font-bold" style="color:var(--purple);">زيت الأرغان</div>
+        <div class="px-3 md:px-4" style="color:var(--ink-dim);">يغذي بعمق ويمنح الرموش لمعانًا صحيًا</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-12 max-w-xl">
+    <div class="reveal mb-6 max-w-xl">
       <span class="wave-tag">آراء العميلات</span>
       <div class="lash-divider"></div>
-      <h2 class="font-display text-3xl md:text-4xl mt-3 font-bold" style="color:var(--ink);">ماذا تقول عميلاتنا.</h2>
+      <h2 class="font-display text-xl md:text-3xl mt-2 font-bold" style="color:var(--ink);">ماذا تقول عميلاتنا.</h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="reveal rounded-2xl p-6" style="background:var(--surface); border:1px solid var(--hairline);">
-        <div class="mb-3" style="color:var(--gold);">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
+    <div class="grid md:grid-cols-3 gap-3">
+      <div class="reveal rounded-xl p-4" style="background:var(--surface); border:1px solid var(--hairline);">
+        <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
+        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
           <img src="images/feedbacks/625046465_17997857555899492_8324864965829211798_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
-        <p class="mb-4 text-sm" style="color:var(--ink-dim);">"صراحة ما توقعت النتيجة بهالسرعة. رموشي صارت أطول وأكثر كثافة. أحسست بالفرق بعد ثلاث أسابيع."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">م.ن</div>
-          <div class="text-sm">مريم ن. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
+        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"صراحة ما توقعت النتيجة بهالسرعة. رموشي صارت أطول وأكثر كثافة. أحسست بالفرق بعد ثلاث أسابيع."</p>
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">م.ن</div>
+          <div class="text-xs">مريم ن. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
-      <div class="reveal rounded-2xl p-6" style="transition-delay:0.08s; background:var(--surface); border:1px solid var(--hairline);">
-        <div class="mb-3" style="color:var(--gold);">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
+      <div class="reveal rounded-xl p-4" style="transition-delay:0.08s; background:var(--surface); border:1px solid var(--hairline);">
+        <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
+        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
           <img src="images/feedbacks/649207356_18001977803899492_4230145318400710179_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
-        <p class="mb-4 text-sm" style="color:var(--ink-dim);">"جربت عدة منتجات من قبل بس هذا مختلف. التركيبة لطيفة وما سببت لي أي تهيج. رموشي أقوى وأطول وأجمل."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">س.ع</div>
-          <div class="text-sm">سارة ع. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
+        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"جربت عدة منتجات من قبل بس هذا مختلف. التركيبة لطيفة وما سببت لي أي تهيج. رموشي أقوى وأطول وأجمل."</p>
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">س.ع</div>
+          <div class="text-xs">سارة ع. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
-      <div class="reveal rounded-2xl p-6" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
-        <div class="mb-3" style="color:var(--gold);">★★★★★</div>
-        <div class="zoom-frame w-full aspect-[3/4] rounded-xl mb-4 overflow-hidden">
+      <div class="reveal rounded-xl p-4" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
+        <div class="mb-2" style="color:var(--gold); font-size:13px;">★★★★★</div>
+        <div class="zoom-frame w-full aspect-[4/5] rounded-lg mb-3 overflow-hidden">
           <img src="images/feedbacks/656441518_18004647623899492_1088895750541600609_n.jpg" alt="صورة تقييم عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
         </div>
-        <p class="mb-4 text-sm" style="color:var(--ink-dim);">"الفرشاة ناعمة ودقيقة والتطبيق سهل جدًا. صار روتيني الليلي المفضل. أنصح الكل تجربه."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">ن.ح</div>
-          <div class="text-sm">نورة ح. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
+        <p class="mb-3 text-xs" style="color:var(--ink-dim);">"الفرشاة ناعمة ودقيقة والتطبيق سهل جدًا. صار روتيني الليلي المفضل. أنصح الكل تجربه."</p>
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style="background:var(--surface-2); color:var(--purple);">ن.ح</div>
+          <div class="text-xs">نورة ح. <span style="color:var(--ink-dim);">· عميلة موثقة</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="mt-8 max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-    <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]">
+  <div class="mt-4 max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2">
+    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]">
       <img src="images/feedbacks/642638581_18001672253899492_6739858333480044737_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
-    <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.05s;">
+    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.05s;">
       <img src="images/feedbacks/651881579_18002934410899492_4856857686605832903_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
-    <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.1s;">
+    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.1s;">
       <img src="images/feedbacks/625977032_17997763139899492_5718501016847329763_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
-    <div class="reveal-scale zoom-frame rounded-xl overflow-hidden aspect-[3/4]" style="transition-delay:0.15s;">
+    <div class="reveal-scale zoom-frame rounded-lg overflow-hidden aspect-[3/4]" style="transition-delay:0.15s;">
       <img src="images/feedbacks/682762984_18009537839899492_6976942920724132569_n.jpg" alt="صورة تقييم من عميلة" loading="lazy" class="ph-frame w-full h-full" style="object-fit:cover; background:var(--surface);">
     </div>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-3xl mx-auto text-center reveal">
     <span class="badge-luxe">عرض اليوم الخاص</span>
-    <div class="flex items-center justify-center gap-4 mt-6 mb-4">
-      <span class="text-2xl md:text-3xl line-through" style="color:var(--ink-dim);">3,500 د.ج</span>
-      <span class="price-shimmer font-display text-5xl md:text-6xl font-extrabold">1,900 د.ج</span>
+    <div class="flex items-center justify-center gap-4 mt-4 mb-3">
+      <span class="text-xl md:text-2xl line-through" style="color:var(--ink-dim);">3,500 د.ج</span>
+      <span class="price-shimmer font-display text-4xl md:text-5xl font-extrabold">1,900 د.ج</span>
     </div>
-    <p class="mb-6" style="color:var(--ink-dim);">الكمية محدودة بهذا السعر — الدفع عند الاستلام.</p>
-    <div class="flex flex-wrap justify-center gap-2 mb-8">
+    <p class="mb-4 text-sm" style="color:var(--ink-dim);">الكمية محدودة بهذا السعر — الدفع عند الاستلام.</p>
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
       <span class="badge badge-purple">بقي 24 قطعة فقط</span>
       <span class="badge badge-purple">شحن خلال 2-4 أيام</span>
     </div>
-    <a href="#order" class="btn-primary inline-block rounded-full px-10 py-4 text-lg">اطلبي الآن بهذا السعر</a>
+    <a href="#order" class="btn-primary inline-block rounded-full px-8 py-3.5 text-sm">اطلبي الآن بهذا السعر</a>
   </div>
 </section>
 
-<section class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
-  <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-4">
-    <div class="reveal rounded-2xl p-7 text-center" style="background:var(--surface); border:1px solid var(--hairline);">
-      <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+<section class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+  <div class="max-w-3xl mx-auto grid grid-cols-2 gap-3">
+    <div class="reveal rounded-xl p-5 text-center" style="background:var(--surface); border:1px solid var(--hairline);">
+      <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
       </div>
-      <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">الدفع عند الاستلام</h3>
-      <p class="text-sm" style="color:var(--ink-dim);">لا حاجة لبطاقة بنكية. ادفعي عند استلام المنتج.</p>
+      <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">الدفع عند الاستلام</h3>
+      <p class="text-xs" style="color:var(--ink-dim);">لا حاجة لبطاقة بنكية. ادفعي عند استلام المنتج.</p>
     </div>
-    <div class="reveal rounded-2xl p-7 text-center" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
-      <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4" style="background:var(--purple-soft);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+    <div class="reveal rounded-xl p-5 text-center" style="transition-delay:0.16s; background:var(--surface); border:1px solid var(--hairline);">
+      <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-3" style="background:var(--purple-soft);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
       </div>
-      <h3 class="font-display text-lg mb-2 font-bold" style="color:var(--ink);">منتجات أصلية</h3>
-      <p class="text-sm" style="color:var(--ink-dim);">نضمن لك منتجات أصلية 100% من علامات موثوقة.</p>
+      <h3 class="font-display text-base mb-1 font-bold" style="color:var(--ink);">منتجات أصلية</h3>
+      <p class="text-xs" style="color:var(--ink-dim);">نضمن لك منتجات أصلية 100% من علامات موثوقة.</p>
     </div>
   </div>
 </section>
 
-<section id="order" class="py-20 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
+<section id="order" class="py-10 px-5 md:px-8 border-t" style="border-color:var(--hairline);">
   <div class="max-w-xl mx-auto">
-    <div class="reveal text-center mb-8">
+    <div class="reveal text-center mb-6">
       <span class="badge-luxe">اطلبي الآن</span>
-      <h2 class="font-display text-3xl md:text-4xl mt-4 mb-2 font-bold" style="color:var(--ink); font-weight:800;">أكمل طلبك</h2>
-      <p style="color:var(--ink-dim); font-weight:500;">الدفع عند الاستلام · توصيل سريع</p>
+      <h2 class="font-display text-xl md:text-3xl mt-3 mb-1 font-bold" style="color:var(--ink); font-weight:800;">أكمل طلبك</h2>
+      <p class="text-sm" style="color:var(--ink-dim); font-weight:500;">الدفع عند الاستلام · توصيل سريع</p>
     </div>
 
-    <form id="orderForm" class="reveal-scale rounded-3xl p-6 md:p-8 space-y-4" style="background:var(--surface); border:1px solid var(--hairline);">
+    <form id="orderForm" class="reveal-scale rounded-2xl p-5 md:p-6 space-y-3" style="background:var(--surface); border:1px solid var(--hairline);">
       <div class="grid grid-cols-2 gap-3">
         <div class="field">
           <label class="text-xs mb-1 block" style="color:var(--ink); font-weight:600; font-size:13px;">الاسم الأول</label>
@@ -729,7 +727,7 @@
   </div>
 </section>
 
-<footer class="py-10 px-5 md:px-8 text-center text-xs" style="color:var(--ink-dim); border-top:1px solid var(--hairline);">
+<footer class="py-6 px-5 text-center text-xs" style="color:var(--ink-dim); border-top:1px solid var(--hairline);">
   © 2026 تريندي ستور. جميع الحقوق محفوظة.
 </footer>
 
