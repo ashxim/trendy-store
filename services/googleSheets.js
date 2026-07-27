@@ -8,16 +8,16 @@ export async function saveToGoogleSheets(order) {
 
   const payload = {
     customerName: order.customerName,
-    phoneNumber: order.phoneNumber,
+    phoneNumber: "'" + order.phoneNumber,
     wilaya: order.wilaya,
     deliveryMethod: order.deliveryMethod === 'home' ? 'Home Delivery' : 'Stopdesk',
     address: order.address,
     notes: order.notes || '',
     productName: order.productName,
-    productPrice: order.productPrice,
-    deliveryPrice: order.deliveryPrice,
-    totalPrice: order.totalPrice,
-    quantity: order.quantity || 1,
+    productPrice: String(order.productPrice),
+    deliveryPrice: String(order.deliveryPrice),
+    totalPrice: String(order.totalPrice),
+    quantity: String(order.quantity || 1),
     orderStatus: order.orderStatus || 'New',
   }
 
