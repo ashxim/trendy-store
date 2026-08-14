@@ -778,7 +778,7 @@
 
           <div id="addressField" class="field hidden">
             <label>العنوان كاملاً</label>
-            <textarea name="address" rows="2" placeholder="الرقم، اسم الشارع، الحي، البلدة" required></textarea>
+            <textarea name="address" rows="2" placeholder="الرقم، اسم الشارع، الحي، البلدة"></textarea>
             <div class="err-msg">الرجاء إدخال العنوان.</div>
           </div>
         </div>
@@ -1556,6 +1556,7 @@
     deskField.classList.add("hidden");
     deskEmpty.classList.add("hidden");
     addressField.classList.toggle("hidden", method !== "home");
+    form.address.required = method === "home";
     locationSection.classList.remove("hidden");
     summarySection.classList.add("hidden");
     updateSummary();
