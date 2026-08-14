@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة التحكم — تريندي ستور</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --ink: #20103A;
+    --ink-dim: rgba(32,16,58,0.55);
+    --purple: #7C3AED;
+    --purple-soft: rgba(124,58,237,0.1);
+    --purple-dark: #4C1D95;
+    --hairline: rgba(76,29,149,0.1);
+  }
+  * { box-sizing: border-box; }
+  body{
+    background: #FAF8FF; color: var(--ink);
+    font-family: 'Tajawal', sans-serif; font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,.font-display{ font-family: 'Cairo', sans-serif; }
+  .field{ margin-bottom: 13px; }
+  .field label{ display:block; margin-bottom:5px; font-size:12.5px; font-weight:600; color:var(--ink); }
+  .field input, .field textarea, .field select{
+    width:100%; background:#fff; border:1px solid var(--hairline);
+    border-radius:10px; padding:10px 12px; font-size:13.5px; font-weight:500;
+    color:var(--ink); font-family:'Tajawal',sans-serif;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:none; border-color:var(--purple); box-shadow:0 0 0 4px rgba(124,58,237,0.12);
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    border-radius:999px; font-weight:700; font-size:13.5px;
+    padding:10px 22px; cursor:pointer; transition:all .25s ease; border:none;
+  }
+  .btn-primary{ background:linear-gradient(135deg, var(--purple), var(--purple-dark)); color:#fff; }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 22px -8px rgba(124,58,237,.5); }
+  .btn-ghost{ background:#fff; color:var(--purple-dark); border:1.5px solid rgba(124,58,237,.3); }
+  .btn-ghost:hover{ background:var(--purple-soft); }
+  .btn-danger{ background:#fff; color:#DC2626; border:1.5px solid rgba(220,38,38,.3); }
+  .btn-danger:hover{ background:rgba(220,38,38,.06); }
+  .card{
+    background:#fff; border:1px solid var(--hairline); border-radius:14px;
+  }
+  .toast{
+    position:fixed; bottom:20px; right:50%; transform:translate(50%, 20px);
+    background:var(--ink); color:#fff; font-size:13.5px; font-weight:600;
+    padding:12px 22px; border-radius:999px; opacity:0; pointer-events:none;
+    transition:all .35s cubic-bezier(.16,1,.3,1); z-index:100;
+  }
+  .toast.show{ opacity:1; transform:translate(50%, 0); }
+  .toast.error{ background:#DC2626; }
+  .dropzone{
+    border:1.5px dashed rgba(124,58,237,.35); border-radius:12px; background:#FBF9FF;
+    cursor:pointer; transition:border-color .25s ease, background .25s ease;
+  }
+  .dropzone.dragover{ border-color:var(--purple); background:var(--purple-soft); }
+  .help-note{
+    background: var(--purple-soft); border: 1px solid rgba(124,58,237,0.18);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 12px; line-height: 1.7; color: var(--ink-dim);
+  }
+  .help-note strong{ color: var(--purple-dark); display: block; margin-bottom: 4px; }
+  .help-note ul{ margin: 0; padding-right: 16px; }
+  .help-note li{ margin-bottom: 3px; }
+  .dz-inner{ padding:22px 16px; text-align:center; }
+  .dz-plus{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:50%; background:var(--purple-soft);
+    color:var(--purple-dark); font-size:22px; font-weight:700; line-height:1;
+  }
+  .dz-title{ margin:8px 0 2px; font-size:13px; font-weight:700; color:var(--ink); }
+  .dz-hint{ margin:0; font-size:11px; color:var(--ink-dim); }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(88px, 1fr)); gap:10px; margin-top:12px; }
+  .g-item{
+    position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--hairline);
+    background:#F4EFFF; aspect-ratio:1;
+  }
+  .g-item img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .g-item.primary{ border:2px solid var(--purple); }
+  .g-badge{
+    position:absolute; top:5px; right:5px; font-size:9px; font-weight:700;
+    background:var(--purple); color:#fff; padding:2px 7px; border-radius:999px;
+  }
+  .g-actions{
+    position:absolute; inset:auto 0 0 0; display:flex; justify-content:center; gap:6px;
+    padding:6px; background:linear-gradient(transparent, rgba(0,0,0,.55));
+  }
+  .g-actions button{
+    font-size:10.5px; font-weight:700; border:none; border-radius:6px; cursor:pointer;
+    padding:4px 8px; background:#fff; color:var(--ink); transition:opacity .2s;
+  }
+  .g-actions button:hover{ opacity:.85; }
+  .g-actions button.g-main{ color:var(--purple-dark); }
+  .g-actions button.g-del{ color:#DC2626; }
+  .tab-btn{
+    padding:9px 22px; border-radius:999px; font-weight:700; font-size:13.5px;
+    background:#fff; color:var(--ink-dim); border:1.5px solid var(--hairline);
+    cursor:pointer; transition:all .25s ease;
+  }
+  .tab-btn:hover{ border-color:rgba(124,58,237,.35); color:var(--purple-dark); }
+  .tab-btn.active{ background:linear-gradient(135deg, var(--purple), var(--purple-dark)); color:#fff; border-color:transparent; box-shadow:0 10px 22px -8px rgba(124,58,237,.5); }
+  .offer-row-bundle{
+    background:linear-gradient(160deg, rgba(233,185,73,0.08), rgba(124,58,237,0.04));
+    border:1px solid rgba(233,185,73,0.4);
+  }
+  .chip{
+    display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px;
+  }
+  .chip.gold{ background:linear-gradient(135deg,#E9B949,#C99A3F); color:#2A1152; }
+  .chip.purple{ background:rgba(124,58,237,.12); color:var(--purple-dark); }
+  .chip.gray{ background:#E5E7EB; color:#6B7280; }
+  .chip.green{ background:#DCFCE7; color:#15803D; }
+  .chip.red{ background:#DC2626; color:#fff; }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginView" class="hidden min-h-screen flex items-center justify-center px-5">
+  <div class="card w-full max-w-sm p-8">
+    <h1 class="font-display font-extrabold text-xl mb-1" style="color:var(--ink);">لوحة تحكم <span style="color:var(--purple);">تريندي ستور</span></h1>
+    <p class="text-xs mb-6" style="color:var(--ink-dim);">أدخل رمز الإدارة للوصول إلى المنتجات.</p>
+    <div class="field">
+      <label>رمز الإدارة</label>
+      <input type="password" id="loginToken" placeholder="ADMIN_TOKEN">
+    </div>
+    <button class="btn btn-primary w-full" id="loginBtn">دخول</button>
+    <p class="text-[11px] mt-4 text-center" style="color:var(--ink-dim);">الرمز هو قيمة ADMIN_TOKEN في إعدادات المشروع.</p>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashView" class="hidden min-h-screen">
+  <header class="sticky top-0 z-40 bg-[#FAF8FF]/90 backdrop-blur border-b" style="border-color:var(--hairline);">
+    <div class="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
+      <h1 class="font-display font-extrabold text-[15px]"><span style="color:var(--purple);">TRENDY</span> STORE <span class="text-xs font-semibold" style="color:var(--ink-dim);">· لوحة التحكم</span></h1>
+      <div class="flex items-center gap-3">
+        <a href="/" target="_blank" class="text-xs font-bold" style="color:var(--purple);">فتح المتجر ↗</a>
+        <button class="btn btn-ghost !px-4 !py-1.5 !text-xs" id="logoutBtn">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-5 py-8">
+    <div id="configBanner" class="hidden card p-4 mb-6 text-sm" style="border-color:rgba(124,58,237,.25); background:rgba(124,58,237,.05);">
+      <strong style="color:var(--purple-dark);">التخزين غير مُهيأ بعد.</strong>
+      <span style="color:var(--ink-dim);"> أضف SUPABASE_URL و SUPABASE_SERVICE_ROLE_KEY و ADMIN_TOKEN إلى إعدادات المشروع، وأنشئ الجدول من ملف supabase/schema.sql في محرر SQL.</span>
+    </div>
+
+    <!-- ====== Store settings / Hero ====== -->
+    <div class="card p-6 mb-6">
+      <h3 class="font-display font-bold text-lg mb-1">إعدادات المتجر — الصورة الرئيسية</h3>
+      <p class="text-xs mb-5" style="color:var(--ink-dim);">غيّري صورة الهيرو (أعلى الصفحة) من هنا. إذا لم تُحدَّد، يظهر تلقائيًا صورة المنتج المميز.</p>
+      <div class="flex flex-col md:flex-row gap-5 items-start">
+        <div class="w-40 h-40 rounded-xl overflow-hidden border shrink-0" style="border-color:var(--hairline); background:#F4EFFF;">
+          <img id="heroPreview" src="" alt="الصورة الرئيسية" class="w-full h-full object-cover" style="display:none;">
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="field !mb-3">
+            <label>رفع صورة هيرو جديدة</label>
+            <input type="file" id="heroFile" accept="image/*">
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="btn btn-primary" id="saveHeroBtn">حفظ الصورة الرئيسية</button>
+            <button class="btn btn-ghost" id="resetHeroBtn">إزالة (استخدام صورة المنتج المميز)</button>
+          </div>
+          <p id="heroStatus" class="text-[11.5px] mt-3 hidden" style="color:var(--purple-dark);"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Tabs ====== -->
+    <div class="flex gap-2 mb-6" id="adminTabs">
+      <button class="tab-btn active" data-tab="products">المنتجات</button>
+      <button class="tab-btn" data-tab="offers">العروض الخاصة</button>
+    </div>
+
+    <!-- ====== TAB: PRODUCTS ====== -->
+    <div id="tab-products">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="font-display font-extrabold text-xl">المنتجات</h2>
+          <p class="text-xs" style="color:var(--ink-dim);">أضف، عدّل، أو احذف المنتجات. التغييرات تظهر فورًا في المتجر.</p>
+        </div>
+        <button class="btn btn-primary" id="addBtn">+ إضافة منتج</button>
+      </div>
+
+      <div id="listEmpty" class="hidden card p-10 text-center text-sm" style="color:var(--ink-dim);">
+        لا توجد منتجات بعد. اضغط "إضافة منتج" لبدء الكتالوج.
+      </div>
+      <div id="productList" class="space-y-3"></div>
+
+    <!-- ====== Product form ====== -->
+    <div id="formPanel" class="hidden card p-6 mt-8">
+      <h3 class="font-display font-bold text-lg mb-5" id="formTitle">إضافة منتج</h3>
+      <div class="grid grid-cols-2 gap-x-3">
+        <div class="field col-span-2 md:col-span-1">
+          <label>اسم المنتج *</label>
+          <input type="text" id="f-name">
+        </div>
+        <div class="field col-span-2 md:col-span-1">
+          <label>الاسم المختصر (للاختيار في الطلب)</label>
+          <input type="text" id="f-short" placeholder="مثال: سيروم الرموش">
+        </div>
+        <div class="field col-span-2 md:col-span-1">
+          <label>المعرّف (id) — أحرف صغيرة وأرقام وشرطات فقط *</label>
+          <input type="text" id="f-id" placeholder="مثال: biowaqua-lash">
+        </div>
+        <div class="field col-span-2 md:col-span-1">
+          <label>العبارة اللاتينية (tagline)</label>
+          <input type="text" id="f-tagline" placeholder="مثال: BIOAQUA LASH SERUM">
+        </div>
+        <div class="field">
+          <label>السعر العادي (د.ج) *</label>
+          <input type="number" id="f-regularPrice" min="0" step="50">
+        </div>
+        <div class="field">
+          <label>سعر البيع / بعد الخصم (د.ج) *</label>
+          <input type="number" id="f-price" min="0" step="50">
+        </div>
+        <div class="field col-span-2">
+          <label class="flex items-center gap-2 cursor-pointer !mb-0">
+            <input type="checkbox" id="f-offerActive" class="!w-auto accent-[#7C3AED]">
+            <span>تفعيل العرض / الخصم</span>
+          </label>
+          <p id="discountPreview" class="text-[11.5px] mt-1.5 hidden" style="color:var(--purple-dark);"></p>
+        </div>
+        <div class="field">
+          <label>شارة العرض (اختياري)</label>
+          <input type="text" id="f-offerBadge" placeholder="مثال: عرض محدود — تُحسب تلقائيًا إن تُرك فارغًا">
+        </div>
+        <div class="field">
+          <label>تاريخ بداية العرض (اختياري)</label>
+          <input type="date" id="f-offerStart">
+        </div>
+        <div class="field">
+          <label>تاريخ نهاية العرض (اختياري)</label>
+          <input type="date" id="f-offerEnd">
+        </div>
+        <div class="field">
+          <label>السعر قبل العرض للعرض (د.ج) — اختياري</label>
+          <input type="number" id="f-oldPrice" min="0" step="50" placeholder="يظهر مشطوبًا">
+        </div>
+        <div class="col-span-2">
+          <div class="help-note">
+            <strong>كيف تعمل العروض؟</strong>
+            <ul>
+              <li>هنا تدار عروض الخصم <b>على المنتج الواحد</b>: ضعي <b>السعر العادي</b> (قبل الخصم) و<b>سعر البيع</b> (الذي يظهر في الطلب)، وفعّلي «تفعيل العرض» — نسبة الخصم تُحسب تلقائيًا وتظهر في قسم «عروض خاصة» بالمتصفح.</li>
+              <li>يمكنك تحديد تاريخ بداية/نهاية للعرض، أو تركه مفتوحًا.</li>
+              <li>شارة العرض اختيارية — تُحسب «-XX%» تلقائيًا إن تُركت فارغة.</li>
+              <li>عروض <b>الباقات</b> (مثل: اشترِ 2 بسعر 2,900) تُدار من تبويب «العروض الخاصة» — منفصلة تمامًا عن هذا التبويب.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="field col-span-2">
+          <label>صور المنتج — ارفعي صورة أو أكثر</label>
+          <div id="dropzone" class="dropzone">
+            <input type="file" id="f-files" accept="image/*" multiple hidden>
+            <div class="dz-inner">
+              <span class="dz-plus">+</span>
+              <p class="dz-title">اسحبي الصور هنا أو اضغطي للاختيار</p>
+              <p class="dz-hint">JPG / PNG / WEBP — تُضغط الصور الكبيرة تلقائيًا. الصورة الأولى = الصورة الرئيسية.</p>
+            </div>
+          </div>
+          <div id="galleryGrid" class="gallery-grid hidden"></div>
+          <div class="mt-3 flex items-center gap-2">
+            <span class="text-[11.5px] font-semibold shrink-0" style="color:var(--ink-dim);">أو رابط مباشر:</span>
+            <input type="text" id="f-image" placeholder="https://... أو images/hero/...">
+          </div>
+          <p id="uploadStatus" class="text-[11.5px] mt-2 hidden" style="color:var(--purple-dark);"></p>
+        </div>
+        <div class="field">
+          <label>الشارة (badge)</label>
+          <input type="text" id="f-badge" placeholder="الأكثر طلباً / جديد / وصل حديثاً">
+        </div>
+        <div class="field">
+          <label>ترتيب العرض</label>
+          <input type="number" id="f-sortOrder" value="0">
+        </div>
+        <div class="field">
+          <label>التقييم (0-5)</label>
+          <input type="number" id="f-rating" min="0" max="5" step="0.1" value="5">
+        </div>
+        <div class="field">
+          <label>عدد التقييمات</label>
+          <input type="text" id="f-reviews" placeholder="1,200+">
+        </div>
+        <div class="field col-span-2">
+          <label>الفوائد — سطر لكل فائدة بصيغة: العنوان | الوصف</label>
+          <textarea id="f-benefits" rows="4" placeholder="تطويل فعال | تركيبة مغذية تحفز نمو الرموش."></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label class="flex items-center gap-2 cursor-pointer !mb-0">
+            <input type="checkbox" id="f-featured" class="!w-auto accent-[#7C3AED]">
+            <span>منتج مميز (يظهر في قسم "الأكثر طلباً")</span>
+          </label>
+        </div>
+        <div class="field col-span-2">
+          <label class="flex items-center gap-2 cursor-pointer !mb-0">
+            <input type="checkbox" id="f-active" class="!w-auto accent-[#7C3AED]" checked>
+            <span>المنتج مفعّل (يظهر في المتجر)</span>
+          </label>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 mt-5">
+        <button class="btn btn-primary" id="saveBtn">حفظ</button>
+        <button class="btn btn-ghost" id="cancelBtn">إلغاء</button>
+        <span class="text-[11px]" style="color:var(--ink-dim);">* حقول إلزامية</span>
+      </div>
+    </div>
+    </div><!-- /tab-products -->
+
+    <!-- ====== TAB: OFFERS ====== -->
+    <div id="tab-offers" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="font-display font-extrabold text-xl">العروض الخاصة</h2>
+          <p class="text-xs" style="color:var(--ink-dim);">عروض <b>الباقات بسعر ثابت</b> (مثل: 2 بسعر 2,900 د.ج) — منفصلة عن خصومات المنتج الواحد وتظهر بارزة في قسم «🔥 عروض خاصة» بالمتصفح.</p>
+        </div>
+        <button class="btn btn-primary" id="addOfferBtn">+ إضافة عرض</button>
+      </div>
+
+      <div id="offerListEmpty" class="hidden card p-10 text-center text-sm" style="color:var(--ink-dim);">
+        لا توجد عروض خاصة بعد. اضغط "إضافة عرض" لإنشاء باقة.
+      </div>
+      <div id="offerList" class="space-y-3"></div>
+
+      <!-- ====== Offer form ====== -->
+      <div id="offerFormPanel" class="hidden card p-6 mt-8">
+        <h3 class="font-display font-bold text-lg mb-5" id="offerFormTitle">إضافة عرض خاص</h3>
+        <div class="grid grid-cols-2 gap-x-3">
+          <div class="field col-span-2">
+            <label>المنتج المعني *</label>
+            <select id="of-product"></select>
+            <p class="text-[11px] mt-1" style="color:var(--ink-dim);">العرض مرتبط بمنتج — سعر الباقة الثابت بدل عدد الوحدات من نفس المنتج.</p>
+          </div>
+          <div class="field col-span-2">
+            <label>عنوان العرض</label>
+            <input type="text" id="of-title" placeholder="مثال: عرض خاص — 2 بيوأكوا">
+          </div>
+          <div class="field">
+            <label>عدد الوحدات (الكمية) *</label>
+            <input type="number" id="of-qty" min="2" step="1" placeholder="مثال: 2">
+          </div>
+          <div class="field">
+            <label>سعر الباقة (د.ج) *</label>
+            <input type="number" id="of-price" min="0" step="50" placeholder="مثال: 2900">
+          </div>
+          <div class="field">
+            <label>شارة العرض</label>
+            <input type="text" id="of-badge" placeholder="مثال: وفر 900 د.ج">
+          </div>
+          <div class="field">
+            <label>صورة العرض (اختياري)</label>
+            <input type="text" id="of-image" placeholder="https://... أو تُترك فارغة لاستخدام صورة المنتج">
+          </div>
+          <div class="field col-span-2">
+            <label class="flex items-center gap-2 cursor-pointer !mb-0">
+              <input type="checkbox" id="of-active" class="!w-auto accent-[#7C3AED]" checked>
+              <span>العرض مفعّل (يظهر في المتجر)</span>
+            </label>
+          </div>
+          <div class="field col-span-2">
+            <label class="flex items-center gap-2 cursor-pointer !mb-0">
+              <input type="checkbox" id="of-featured" class="!w-auto accent-[#7C3AED]">
+              <span>عرض مميز (يظهر أولًا وبشكل بارز)</span>
+            </label>
+          </div>
+          <div class="col-span-2" id="offerSavingsPreview"></div>
+        </div>
+        <div class="flex items-center gap-3 mt-5">
+          <button class="btn btn-primary" id="saveOfferBtn">حفظ العرض</button>
+          <button class="btn btn-ghost" id="cancelOfferBtn">إلغاء</button>
+        </div>
+      </div>
+    </div><!-- /tab-offers -->
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const TOKEN_KEY = "ts_admin_token";
+  const $ = id => document.getElementById(id);
+  let token = sessionStorage.getItem(TOKEN_KEY) || "";
+  let products = [];
+  let editingId = null;
+  let images = [];      // all image URLs for the product being edited
+  let primaryImage = ""; // the main image URL
+  let uploading = false;
+
+  const toast = $("toast");
+  let toastTimer;
+  function showToast(msg, isError){
+    toast.textContent = msg;
+    toast.classList.toggle("error", !!isError);
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+  }
+
+  async function api(path, opts = {}){
+    const headers = { ...(opts.headers || {}) };
+    if (token) headers["x-admin-token"] = token;
+    if (opts.body) headers["Content-Type"] = "application/json";
+    const res = await fetch(path, { ...opts, headers });
+    return res;
+  }
+
+  /* ---------- Views ---------- */
+  function showLogin(){
+    $("loginView").classList.remove("hidden");
+    $("loginView").classList.add("flex");
+    $("dashView").classList.add("hidden");
+  }
+  function showDash(){
+    $("loginView").classList.add("hidden");
+    $("loginView").classList.remove("flex");
+    $("dashView").classList.remove("hidden");
+  }
+
+  $("loginBtn").addEventListener("click", function(){
+    const value = $("loginToken").value.trim();
+    if (!value){ showToast("أدخل رمز الإدارة", true); return; }
+    token = value;
+    sessionStorage.setItem(TOKEN_KEY, token);
+    showDash();
+    loadProducts();
+  });
+
+  $("loginToken").addEventListener("keydown", function(e){
+    if (e.key === "Enter") $("loginBtn").click();
+  });
+
+  $("logoutBtn").addEventListener("click", function(){
+    token = "";
+    sessionStorage.removeItem(TOKEN_KEY);
+    $("loginToken").value = "";
+    showLogin();
+  });
+
+  /* ---------- Store settings / Hero ---------- */
+  let heroImage = "";
+  let heroFileData = null; // { name, data(base64) } pending upload
+
+  async function loadSettings(){
+    try {
+      const res = await fetch("/api/settings");
+      if (!res.ok) return;
+      const json = await res.json();
+      const settings = json.settings || {};
+      heroImage = settings.heroImage || "";
+      renderHeroPreview();
+    } catch (e){ /* ignore */ }
+  }
+
+  function renderHeroPreview(){
+    const img = $("heroPreview");
+    if (heroImage){
+      img.src = heroImage;
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+      img.removeAttribute("src");
+    }
+  }
+
+  $("heroFile").addEventListener("change", function(){
+    const file = this.files[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")){ showToast("اختاري صورة بصيغة صحيحة", true); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      heroFileData = { name: file.name, type: file.type, data: reader.result };
+      $("heroPreview").src = reader.result;
+      $("heroPreview").style.display = "block";
+      $("heroStatus").classList.remove("hidden");
+      $("heroStatus").textContent = "الصورة جاهزة — اضغطي \"حفظ الصورة الرئيسية\"";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  $("saveHeroBtn").addEventListener("click", async function(){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+    if (!heroFileData){ showToast("اختاري صورة أولًا", true); return; }
+    const status = $("heroStatus");
+    status.classList.remove("hidden");
+    status.textContent = "جارٍ الرفع…";
+    try {
+      const form = new FormData();
+      const raw = new Blob([await (await fetch(heroFileData.data)).arrayBuffer()], { type: heroFileData.type || "image/jpeg" });
+      const blob = await compressImage(raw);
+      form.append("file", blob, heroFileData.name);
+      const up = await fetch("/api/upload", { method: "POST", headers: { "x-admin-token": token }, body: form });
+      const upJson = await up.json().catch(() => ({}));
+      if (!up.ok){ showToast(uploadStatusMessage(up, upJson), true); status.classList.add("hidden"); return; }
+      const res = await api("/api/settings", { method: "PUT", body: JSON.stringify({ heroImage: upJson.url }) });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok){ showToast(json.error || "فشل الحفظ", true); status.classList.add("hidden"); return; }
+      heroImage = upJson.url;
+      heroFileData = null;
+      $("heroFile").value = "";
+      renderHeroPreview();
+      status.textContent = "تم حفظ الصورة الرئيسية بنجاح ✓";
+      showToast("تم حفظ الصورة الرئيسية");
+    } catch (e){
+      showToast("فشل حفظ الصورة", true);
+      status.classList.add("hidden");
+    }
+  });
+
+  $("resetHeroBtn").addEventListener("click", async function(){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+    if (!confirm("إزالة الصورة الرئيسية المخصصة؟ سيظهر صورة المنتج المميز.")) return;
+    const res = await api("/api/settings", { method: "PUT", body: JSON.stringify({ heroImage: "" }) });
+    if (!res.ok){ showToast("فشل الحفظ", true); return; }
+    heroImage = "";
+    heroFileData = null;
+    $("heroFile").value = "";
+    $("heroStatus").classList.add("hidden");
+    renderHeroPreview();
+    showToast("تمت الإزالة");
+  });
+
+  /* ---------- List ---------- */
+  function discountOf(p){
+    const regular = Number(p.regularPrice) || 0;
+    const sale = Number(p.price) || 0;
+    if (p.offerActive && regular > sale) return Math.round((regular - sale) / regular * 100);
+    return null;
+  }
+
+  function productRow(p){
+    const pct = discountOf(p);
+    const b = bundleOf(p);
+    const el = document.createElement("div");
+    el.className = "card p-3.5 flex items-center gap-4" + (p.active === false ? " opacity-60" : "");
+    el.innerHTML =
+      '<img src="' + (p.image || "") + '" alt="" class="w-14 h-14 rounded-xl object-cover shrink-0" style="background:#F4EFFF;" onerror="this.style.visibility=\'hidden\'">' +
+      '<div class="flex-1 min-w-0">' +
+        '<div class="flex items-center gap-2 flex-wrap">' +
+          '<strong class="text-[14.5px]" style="color:var(--ink);">' + esc(p.name) + '</strong>' +
+          (p.featured ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(124,58,237,.12); color:var(--purple-dark);">الأكثر طلباً</span>' : "") +
+          (pct != null ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:#DC2626; color:#fff;">-'+ pct + '%</span>' : "") +
+          (b ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:linear-gradient(135deg,#E9B949,#C99A3F); color:#2A1152;">🔥 ' + esc(b.title) + '</span>' : "") +
+          (p.badge ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:#F4EFFF; color:var(--ink-dim);">' + esc(p.badge) + '</span>' : "") +
+          (p.active === false ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:#E5E7EB; color:#6B7280;">مُعطّل</span>' : "") +
+        '</div>' +
+        '<div class="text-xs mt-1" style="color:var(--ink-dim);">' +
+          esc(p.short || p.name) + ' · <strong style="color:var(--purple-dark);">' + fmt(p.price) + '</strong>' +
+          ((p.regularPrice || p.oldPrice) ? ' <s>' + fmt(p.regularPrice || p.oldPrice) + '</s>' : "") +
+        '</div>' +
+      '</div>' +
+      '<div class="flex items-center gap-2 shrink-0">' +
+        '<button class="btn btn-ghost !px-4 !py-1.5 !text-xs" data-edit="' + esc(p.id) + '">تعديل</button>' +
+        '<button class="btn btn-danger !px-4 !py-1.5 !text-xs" data-del="' + esc(p.id) + '">حذف</button>' +
+      '</div>';
+    el.querySelector("[data-edit]").addEventListener("click", function(){ openForm(products.find(x => x.id === this.dataset.edit)); });
+    el.querySelector("[data-del]").addEventListener("click", function(){ deleteProduct(this.dataset.del); });
+    return el;
+  }
+
+  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function fmt(n){ return Number(n).toLocaleString() + " د.ج"; }
+
+  function renderList(){
+    const list = $("productList");
+    list.innerHTML = "";
+    $("listEmpty").classList.toggle("hidden", products.length > 0);
+    products.forEach(p => list.appendChild(productRow(p)));
+  }
+
+  async function loadProducts(){
+    try {
+      const res = await api("/api/products");
+      if (res.status === 503){
+        $("configBanner").classList.remove("hidden");
+        $("listEmpty").classList.remove("hidden");
+        return;
+      }
+      $("configBanner").classList.add("hidden");
+      if (!res.ok){ showToast("تعذر تحميل المنتجات", true); return; }
+      const json = await res.json();
+      products = json.products || [];
+      renderList();
+      renderOffers();
+    } catch (e){
+      showToast("تعذر تحميل المنتجات", true);
+    }
+  }
+
+  /* ---------- Image upload ---------- */
+  const dz = $("dropzone");
+  const fileInput = $("f-files");
+
+  dz.addEventListener("click", () => fileInput.click());
+  dz.addEventListener("dragover", e => { e.preventDefault(); dz.classList.add("dragover"); });
+  dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
+  dz.addEventListener("drop", e => {
+    e.preventDefault();
+    dz.classList.remove("dragover");
+    if (e.dataTransfer.files.length) uploadFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length) uploadFiles(fileInput.files);
+    fileInput.value = "";
+  });
+
+  /* Compress big photos in the browser before upload (phone cameras often exceed 8MB). */
+  function compressImage(file){
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith("image/") || file.type === "image/gif"){ resolve(file); return; }
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = function(){
+        URL.revokeObjectURL(url);
+        const MAX = 1600;
+        if (img.width <= MAX && img.height <= MAX && file.size <= 2 * 1024 * 1024){ resolve(file); return; }
+        const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(img.width * scale));
+        canvas.height = Math.max(1, Math.round(img.height * scale));
+        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+        // WebP keeps transparency (PNG logos) and shrinks photos; fall back to JPEG.
+        const tryBlob = mime => new Promise(res => canvas.toBlob(res, mime, 0.85));
+        tryBlob("image/webp").then(b => {
+          if (b) resolve(b); else tryBlob("image/jpeg").then(b2 => resolve(b2 || file));
+        });
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error("image load failed")); };
+      img.src = url;
+    });
+  }
+
+  function uploadStatusMessage(res, json){
+    if (res.status === 401) return "انتهت الجلسة — سجّلي الخروج ثم الدخول مجددًا";
+    return json.error || "فشل رفع الصورة";
+  }
+
+  async function uploadFiles(fileList){
+    if (uploading) return;
+    uploading = true;
+    const status = $("uploadStatus");
+    status.classList.remove("hidden");
+    const files = Array.from(fileList).filter(f => f.type.startsWith("image/"));
+    if (!files.length){ showToast("اختاري صورًا بصيغة صحيحة", true); uploading = false; status.classList.add("hidden"); return; }
+    for (let i = 0; i < files.length; i++){
+      const f = files[i];
+      status.textContent = "جارٍ رفع " + (i + 1) + " من " + files.length + "…";
+      try {
+        const blob = await compressImage(f);
+        const form = new FormData();
+        form.append("file", blob, f.name);
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          headers: { "x-admin-token": token },
+          body: form,
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok){ showToast(uploadStatusMessage(res, json), true); continue; }
+        images.push(json.url);
+        if (!primaryImage) primaryImage = json.url;
+        renderGallery();
+      } catch (e){
+        showToast("فشل رفع الصورة", true);
+      }
+    }
+    uploading = false;
+    status.classList.add("hidden");
+    if (images.length) showToast("تم رفع الصور");
+  }
+
+  function renderGallery(){
+    const grid = $("galleryGrid");
+    if (!images.length){ grid.classList.add("hidden"); grid.innerHTML = ""; return; }
+    grid.classList.remove("hidden");
+    grid.innerHTML = "";
+    images.forEach((url, i) => {
+      const item = document.createElement("div");
+      item.className = "g-item" + (url === primaryImage ? " primary" : "");
+      item.innerHTML =
+        '<img src="' + esc(url) + '" alt="" loading="lazy">' +
+        (url === primaryImage ? '<span class="g-badge">رئيسية</span>' : "") +
+        '<div class="g-actions">' +
+          (url !== primaryImage ? '<button class="g-main" data-main="' + i + '">تعيين رئيسية</button>' : "") +
+          '<button class="g-del" data-del="' + i + '">حذف</button>' +
+        '</div>';
+      item.querySelector("[data-main]")?.addEventListener("click", () => {
+        primaryImage = url;
+        $("f-image").value = url;
+        renderGallery();
+      });
+      item.querySelector("[data-del]")?.addEventListener("click", () => deleteImage(i, url));
+      grid.appendChild(item);
+    });
+  }
+
+  async function deleteImage(index, url){
+    images.splice(index, 1);
+    if (primaryImage === url) primaryImage = images[0] || "";
+    $("f-image").value = primaryImage;
+    renderGallery();
+    // Best-effort cleanup of the file from storage (only for uploaded files)
+    const path = extractPath(url);
+    if (path){
+      try {
+        await fetch("/api/upload?path=" + encodeURIComponent(path), {
+          method: "DELETE",
+          headers: { "x-admin-token": token },
+        });
+      } catch (e){ /* ignore */ }
+    }
+  }
+
+  function extractPath(url){
+    const m = String(url || "").match(/\/object\/public\/product-images\/([^?#]+)/);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+
+  /* ---------- Form ---------- */
+  function benefitsToText(benefits){
+    return (benefits || []).map(b => (b.t || "") + " | " + (b.d || "")).join("\n");
+  }
+  function textToBenefits(text){
+    return (text || "").split("\n").map(line => line.trim()).filter(Boolean).map(line => {
+      const idx = line.indexOf("|");
+      if (idx > -1) return { t: line.slice(0, idx).trim(), d: line.slice(idx + 1).trim() };
+      return { t: line, d: "" };
+    });
+  }
+
+  function openForm(p){
+    editingId = p ? p.id : null;
+    $("formTitle").textContent = p ? "تعديل: " + p.name : "إضافة منتج";
+    $("f-id").readOnly = !!p;
+    $("f-id").value = p ? p.id : "";
+    $("f-name").value = p ? p.name : "";
+    $("f-short").value = p ? (p.short || "") : "";
+    $("f-tagline").value = p ? (p.tagline || "") : "";
+    $("f-regularPrice").value = p && p.regularPrice != null ? p.regularPrice : "";
+    $("f-price").value = p ? p.price : "";
+    $("f-oldPrice").value = p && p.oldPrice != null ? p.oldPrice : "";
+    $("f-offerActive").checked = p ? !!p.offerActive : false;
+    $("f-offerBadge").value = p ? (p.offerBadge || "") : "";
+    $("f-offerStart").value = p ? (p.offerStart || "") : "";
+    $("f-offerEnd").value = p ? (p.offerEnd || "") : "";
+    $("f-active").checked = p ? p.active !== false : true;
+    updateDiscountPreview();
+    images = Array.isArray(p && p.images) && p.images.length ? p.images.slice() : (p && p.image ? [p.image] : []);
+    primaryImage = (p && p.image) || images[0] || "";
+    $("f-image").value = primaryImage;
+    renderGallery();
+    $("f-badge").value = p ? (p.badge || "") : "";
+    $("f-sortOrder").value = p ? (p.sortOrder || 0) : 0;
+    $("f-rating").value = p ? (p.rating || 5) : 5;
+    $("f-reviews").value = p ? (p.reviews || "") : "";
+    $("f-benefits").value = benefitsToText(p ? p.benefits : []);
+    $("f-featured").checked = p ? !!p.featured : false;
+    $("formPanel").classList.remove("hidden");
+    $("formPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function closeForm(){
+    $("formPanel").classList.add("hidden");
+    editingId = null;
+  }
+
+  function updateDiscountPreview(){
+    const regular = Number($("f-regularPrice").value) || 0;
+    const sale = Number($("f-price").value) || 0;
+    const el = $("discountPreview");
+    if ($("f-offerActive").checked && regular > sale && sale > 0){
+      const pct = Math.round((regular - sale) / regular * 100);
+      el.classList.remove("hidden");
+      el.textContent = "الخصم: -" + pct + "%  ·  " + fmt(regular) + " → " + fmt(sale);
+    } else {
+      el.classList.add("hidden");
+    }
+  }
+  ["f-regularPrice", "f-price", "f-offerActive"].forEach(id => {
+    $(id).addEventListener("input", updateDiscountPreview);
+    $(id).addEventListener("change", updateDiscountPreview);
+  });
+
+  $("addBtn").addEventListener("click", function(){ openForm(null); });
+  $("cancelBtn").addEventListener("click", closeForm);
+
+  $("saveBtn").addEventListener("click", async function(){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+
+    const manualUrl = $("f-image").value.trim();
+    if (manualUrl && images.indexOf(manualUrl) === -1) images.unshift(manualUrl);
+    if (manualUrl && !primaryImage) primaryImage = manualUrl;
+
+    const payload = {
+      id: $("f-id").value.trim().toLowerCase(),
+      name: $("f-name").value.trim(),
+      short: $("f-short").value.trim(),
+      tagline: $("f-tagline").value.trim(),
+      price: Number($("f-price").value) || 0,
+      regularPrice: $("f-regularPrice").value !== "" ? Number($("f-regularPrice").value) : null,
+      oldPrice: $("f-oldPrice").value !== "" ? Number($("f-oldPrice").value) : null,
+      image: primaryImage || images[0] || "",
+      images: images,
+      badge: $("f-badge").value.trim(),
+      offerActive: $("f-offerActive").checked,
+      offerBadge: $("f-offerBadge").value.trim(),
+      offerStart: $("f-offerStart").value || null,
+      offerEnd: $("f-offerEnd").value || null,
+      active: $("f-active").checked,
+      sortOrder: Number($("f-sortOrder").value) || 0,
+      rating: Number($("f-rating").value) || 5,
+      reviews: $("f-reviews").value.trim(),
+      benefits: textToBenefits($("f-benefits").value),
+      featured: $("f-featured").checked,
+    };
+
+    if (!payload.name || !/^[a-z0-9-]+$/.test(payload.id)){
+      showToast("أدخل الاسم ومعرّفًا صحيحًا (أحرف صغيرة وأرقام وشرطات)", true);
+      return;
+    }
+
+    try {
+      const res = await api(editingId ? "/api/products" : "/api/products", {
+        method: editingId ? "PUT" : "POST",
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok){
+        showToast(json.error || "فشل الحفظ", true);
+        if (res.status === 401) showLogin();
+        return;
+      }
+      showToast(editingId ? "تم تحديث المنتج" : "تمت إضافة المنتج");
+      closeForm();
+      await loadProducts();
+    } catch (e){
+      showToast("فشل الحفظ", true);
+    }
+  });
+
+  /* ---------- Delete ---------- */
+  async function deleteProduct(id){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+    const p = products.find(x => x.id === id);
+    if (!confirm("حذف المنتج \"" + (p ? p.name : id) + "\" نهائيًا؟")) return;
+    try {
+      const res = await api("/api/products?id=" + encodeURIComponent(id), { method: "DELETE" });
+      if (!res.ok){
+        const json = await res.json().catch(() => ({}));
+        showToast(json.error || "فشل الحذف", true);
+        if (res.status === 401) showLogin();
+        return;
+      }
+      showToast("تم حذف المنتج");
+      await loadProducts();
+    } catch (e){
+      showToast("فشل الحذف", true);
+    }
+  }
+
+  /* ---------- Tabs ---------- */
+  let activeTab = "products";
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", function(){
+      activeTab = this.dataset.tab;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b === this));
+      $("tab-products").classList.toggle("hidden", activeTab !== "products");
+      $("tab-offers").classList.toggle("hidden", activeTab !== "offers");
+      if (activeTab === "offers") renderOffers();
+    });
+  });
+
+  /* ---------- Offers (fixed-price bundles) ---------- */
+  function hasBundle(p){
+    if (!p || !p.bundle) return false;
+    return Number(p.bundle.qty) >= 2 && Number(p.bundle.price) > 0;
+  }
+  function bundleOf(p){
+    if (!hasBundle(p) || p.bundle.active === false) return null;
+    const qty = Number(p.bundle.qty) || 0;
+    const price = Number(p.bundle.price) || 0;
+    const single = Number(p.price) || 0;
+    return {
+      qty,
+      price,
+      title: p.bundle.title || ("عرض خاص — " + qty + " " + (p.short || p.name)),
+      badge: p.bundle.badge || ("وفري " + fmt(Math.max(0, single * qty - price))),
+      image: p.bundle.image || p.image,
+      active: p.bundle.active !== false,
+      featured: Boolean(p.bundle.featured),
+      save: Math.max(0, single * qty - price),
+    };
+  }
+
+  function offerRow(p){
+    const raw = p.bundle || {};
+    const qty = Number(raw.qty) || 0;
+    const price = Number(raw.price) || 0;
+    const active = raw.active !== false;
+    const featured = Boolean(raw.featured);
+    const title = raw.title || ("عرض خاص — " + qty + " " + (p.short || p.name));
+    const image = raw.image || p.image;
+    const singleTotal = (Number(p.price) || 0) * qty;
+    const save = Math.max(0, singleTotal - price);
+    const el = document.createElement("div");
+    el.className = "card p-3.5 flex items-center gap-4 offer-row-bundle" + (active ? "" : " opacity-60");
+    el.innerHTML =
+      '<img src="' + (image || "") + '" alt="" class="w-14 h-14 rounded-xl object-cover shrink-0" style="background:#F4EFFF;" onerror="this.style.visibility=\'hidden\'">' +
+      '<div class="flex-1 min-w-0">' +
+        '<div class="flex items-center gap-2 flex-wrap">' +
+          '<strong class="text-[14.5px]" style="color:var(--ink);">' + esc(title) + '</strong>' +
+          (featured ? '<span class="chip gold">مميز</span>' : "") +
+          (active ? '<span class="chip green">مفعّل</span>' : '<span class="chip gray">مُعطّل</span>') +
+        '</div>' +
+        '<div class="text-xs mt-1" style="color:var(--ink-dim);">' +
+          esc(p.short || p.name) + ' · ' + qty + ' حبات · <strong style="color:#B8860B;">' + fmt(price) + '</strong>' +
+          (singleTotal > 0 ? ' <s>' + fmt(singleTotal) + '</s>' : "") + (save > 0 ? ' · وفري ' + fmt(save) : "") +
+        '</div>' +
+      '</div>' +
+      '<div class="flex items-center gap-2 shrink-0">' +
+        '<button class="btn btn-ghost !px-4 !py-1.5 !text-xs" data-offer-edit="' + esc(p.id) + '">تعديل</button>' +
+        '<button class="btn btn-danger !px-4 !py-1.5 !text-xs" data-offer-del="' + esc(p.id) + '">حذف</button>' +
+      '</div>';
+    el.querySelector("[data-offer-edit]").addEventListener("click", function(){ openOfferForm(products.find(x => x.id === this.dataset.offerEdit)); });
+    el.querySelector("[data-offer-del]").addEventListener("click", function(){ deleteOffer(this.dataset.offerDel); });
+    return el;
+  }
+
+  function renderOffers(){
+    const list = $("offerList");
+    list.innerHTML = "";
+    const offers = products.filter(hasBundle);
+    $("offerListEmpty").classList.toggle("hidden", offers.length > 0);
+    offers.forEach(p => list.appendChild(offerRow(p)));
+  }
+
+  function populateOfferProducts(selectedId){
+    const sel = $("of-product");
+    sel.innerHTML = "";
+    const options = products.filter(p => !hasBundle(p) || p.id === selectedId);
+    if (!options.length){
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "لا توجد منتجات متاحة (كل المنتجات لها عروض باقات)";
+      sel.appendChild(opt);
+      sel.disabled = true;
+      return;
+    }
+    sel.disabled = false;
+    options.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p.id;
+      opt.textContent = p.short || p.name;
+      sel.appendChild(opt);
+    });
+    if (selectedId) sel.value = selectedId;
+  }
+
+  function updateOfferSavings(){
+    const p = products.find(x => x.id === $("of-product").value);
+    const qty = Number($("of-qty").value) || 0;
+    const price = Number($("of-price").value) || 0;
+    const el = $("offerSavingsPreview");
+    if (p && qty >= 2 && price > 0){
+      const singleTotal = (Number(p.price) || 0) * qty;
+      const save = Math.max(0, singleTotal - price);
+      el.innerHTML = '<div class="help-note"><strong>معاينة العرض</strong><ul>' +
+        '<li>بدل: <b>' + fmt(singleTotal) + '</b></li>' +
+        '<li>فقط: <b style="color:var(--purple-dark);">' + fmt(price) + '</b></li>' +
+        (save > 0 ? '<li>وفري: <b style="color:#15803D;">' + fmt(save) + '</b></li>' : "") +
+        '</ul></div>';
+    } else {
+      el.innerHTML = "";
+    }
+  }
+
+  let offerEditingId = null;
+
+  function openOfferForm(p){
+    offerEditingId = p ? p.id : null;
+    const raw = p ? (p.bundle || {}) : {};
+    $("offerFormTitle").textContent = p
+      ? ("تعديل العرض: " + (raw.title || ("عرض خاص — " + raw.qty + " " + (p.short || p.name))))
+      : "إضافة عرض خاص";
+    populateOfferProducts(p ? p.id : null);
+    if (p){
+      $("of-title").value = raw.title || "";
+      $("of-qty").value = raw.qty || "";
+      $("of-price").value = raw.price || "";
+      $("of-badge").value = raw.badge || "";
+      $("of-image").value = raw.image || "";
+      $("of-active").checked = raw.active !== false;
+      $("of-featured").checked = !!raw.featured;
+    } else {
+      $("of-title").value = "";
+      $("of-qty").value = "2";
+      $("of-price").value = "";
+      $("of-badge").value = "";
+      $("of-image").value = "";
+      $("of-active").checked = true;
+      $("of-featured").checked = false;
+    }
+    updateOfferSavings();
+    $("offerFormPanel").classList.remove("hidden");
+    $("offerFormPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function closeOfferForm(){
+    $("offerFormPanel").classList.add("hidden");
+    offerEditingId = null;
+  }
+
+  $("addOfferBtn").addEventListener("click", function(){ openOfferForm(null); });
+  $("cancelOfferBtn").addEventListener("click", closeOfferForm);
+  ["of-product", "of-qty", "of-price"].forEach(id => {
+    $(id).addEventListener("input", updateOfferSavings);
+    $(id).addEventListener("change", updateOfferSavings);
+  });
+
+  $("saveOfferBtn").addEventListener("click", async function(){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+    const productId = $("of-product").value;
+    const p = products.find(x => x.id === productId);
+    if (!p){ showToast("اختاري منتجًا للعرض", true); return; }
+    const qty = Number($("of-qty").value) || 0;
+    const price = Number($("of-price").value) || 0;
+    if (qty < 2 || price <= 0){ showToast("أدخل عدد وحدات (2+) وسعر باقة صحيحًا", true); return; }
+    const bundle = {
+      qty,
+      price,
+      title: $("of-title").value.trim(),
+      badge: $("of-badge").value.trim(),
+      image: $("of-image").value.trim(),
+      active: $("of-active").checked,
+      featured: $("of-featured").checked,
+    };
+    const payload = {
+      id: p.id,
+      name: p.name,
+      short: p.short || "",
+      tagline: p.tagline || "",
+      price: p.price,
+      regularPrice: p.regularPrice != null ? p.regularPrice : null,
+      oldPrice: p.oldPrice != null ? p.oldPrice : null,
+      image: p.image || "",
+      images: Array.isArray(p.images) ? p.images : [],
+      badge: p.badge || "",
+      offerActive: !!p.offerActive,
+      offerBadge: p.offerBadge || "",
+      offerStart: p.offerStart || null,
+      offerEnd: p.offerEnd || null,
+      active: p.active !== false,
+      bundle,
+      sortOrder: p.sortOrder || 0,
+      rating: p.rating || 5,
+      reviews: p.reviews || "",
+      benefits: Array.isArray(p.benefits) ? p.benefits : [],
+      featured: !!p.featured,
+    };
+    try {
+      const res = await api("/api/products", { method: "PUT", body: JSON.stringify(payload) });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok){
+        showToast(json.error || "فشل حفظ العرض", true);
+        if (res.status === 401) showLogin();
+        return;
+      }
+      showToast(offerEditingId ? "تم تحديث العرض" : "تمت إضافة العرض");
+      closeOfferForm();
+      await loadProducts();
+    } catch (e){
+      showToast("فشل حفظ العرض", true);
+    }
+  });
+
+  async function deleteOffer(id){
+    if (!token){ showToast("سجل الدخول أولًا", true); return; }
+    const p = products.find(x => x.id === id);
+    const raw = p ? (p.bundle || {}) : {};
+    if (!confirm("حذف العرض \"" + (raw.title || id) + "\"؟ (يُحذف العرض فقط، ويبقى المنتج)")) return;
+    const payload = {
+      id: p.id,
+      name: p.name,
+      short: p.short || "",
+      tagline: p.tagline || "",
+      price: p.price,
+      regularPrice: p.regularPrice != null ? p.regularPrice : null,
+      oldPrice: p.oldPrice != null ? p.oldPrice : null,
+      image: p.image || "",
+      images: Array.isArray(p.images) ? p.images : [],
+      badge: p.badge || "",
+      offerActive: !!p.offerActive,
+      offerBadge: p.offerBadge || "",
+      offerStart: p.offerStart || null,
+      offerEnd: p.offerEnd || null,
+      active: p.active !== false,
+      bundle: null,
+      sortOrder: p.sortOrder || 0,
+      rating: p.rating || 5,
+      reviews: p.reviews || "",
+      benefits: Array.isArray(p.benefits) ? p.benefits : [],
+      featured: !!p.featured,
+    };
+    try {
+      const res = await api("/api/products", { method: "PUT", body: JSON.stringify(payload) });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok){
+        showToast(json.error || "فشل الحذف", true);
+        if (res.status === 401) showLogin();
+        return;
+      }
+      showToast("تم حذف العرض");
+      await loadProducts();
+    } catch (e){
+      showToast("فشل حذف العرض", true);
+    }
+  }
+
+  /* ---------- Init ---------- */
+  if (token){ showDash(); loadProducts(); loadSettings(); } else { showLogin(); }
+})();
+</script>
+</body>
+</html>

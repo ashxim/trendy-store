@@ -1,21 +1,25 @@
 const TELEGRAM_API = 'https://api.telegram.org/bot'
 
 function formatMessage(order) {
+  const qty = order.quantity || 1
   const lines = [
     '--------------------------------',
     '🔥 NEW ORDER - Trendy Store',
     '--------------------------------',
     '',
     `🛍 Product: ${order.productName}`,
+    `📦 Quantity: ${qty}`,
     '',
     `👤 Customer: ${order.customerName}`,
     `📱 Phone: ${order.phoneNumber}`,
-    `📍 Wilaya: ${order.wilaya}`,
+    `📍 Wilaya: ${order.wilaya}${order.wilayaId ? ` (ID ${order.wilayaId})` : ''}`,
+    `🏙 Commune: ${order.commune || '—'}`,
     `🚚 Delivery: ${order.deliveryMethod === 'home' ? 'Home Delivery' : 'Stopdesk'}`,
+    ...(order.deliveryMethod === 'stopdesk' && order.desk ? [`📦 Desk: ${order.desk}`] : []),
     `🏠 Address: ${order.address}`,
     `📝 Notes: ${order.notes || '—'}`,
     '',
-    `💰 Product Price: ${order.productPrice.toLocaleString()} DA`,
+    `💰 Unit Price: ${order.productPrice.toLocaleString()} DA`,
     `🚚 Delivery Price: ${order.deliveryPrice.toLocaleString()} DA`,
     `💵 Total: ${order.totalPrice.toLocaleString()} DA`,
     '',
@@ -46,7 +50,6 @@ export async function sendTelegramNotification(order) {
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        parse_mode: 'HTML',
       }),
     })
 
