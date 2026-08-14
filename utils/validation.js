@@ -17,11 +17,14 @@ export function validateOrder(data) {
     errors.push('wilayaId')
   }
 
-  if (!data.commune || data.commune.trim().length === 0) {
+  // commune and deliveryMethod are optional for backward compatibility with
+  // cached pre-rework pages. When present they are validated; otherwise sane
+  // defaults are applied in sanitizeOrder.
+  if (data.commune !== undefined && data.commune !== null && data.commune.trim().length > 0 && data.commune.trim().length < 2) {
     errors.push('commune')
   }
 
-  if (!data.deliveryMethod || !['home', 'stopdesk'].includes(data.deliveryMethod)) {
+  if (data.deliveryMethod !== undefined && data.deliveryMethod !== null && !['home', 'stopdesk'].includes(data.deliveryMethod)) {
     errors.push('deliveryMethod')
   }
 
@@ -51,14 +54,15 @@ export function validateOrder(data) {
 }
 
 export function sanitizeOrder(data) {
+  const method = ['home', 'stopdesk'].includes(data.deliveryMethod) ? data.deliveryMethod : 'home'
   return {
     customerName: data.customerName.trim(),
     phoneNumber: data.phoneNumber.trim(),
     wilaya: data.wilaya.trim(),
     wilayaId: data.wilayaId != null ? Number(data.wilayaId) : null,
-    commune: (data.commune || '').trim(),
+    commune: (data.commune || data.wilaya || '').trim(),
     communeId: (data.communeId || '').trim(),
-    deliveryMethod: data.deliveryMethod,
+    deliveryMethod: method,
     desk: (data.desk || '').trim(),
     deskId: (data.deskId || '').trim(),
     address: data.address.trim(),
