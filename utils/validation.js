@@ -28,7 +28,11 @@ export function validateOrder(data) {
     errors.push('deliveryMethod')
   }
 
-  if (data.deliveryMethod === 'stopdesk' && (!data.desk || data.desk.trim().length === 0)) {
+  // desk is required only for modern stopdesk payloads (they always send a
+  // deskId field, even empty). Legacy cached pages send stopdesk without any
+  // desk fields; those orders are accepted and the desk defaults to the
+  // wilaya name in sanitizeOrder so they still reach Telegram/Sheets.
+  if (data.deliveryMethod === 'stopdesk' && data.deskId !== undefined && (!data.desk || data.desk.trim().length === 0)) {
     errors.push('desk')
   }
 
@@ -63,7 +67,7 @@ export function sanitizeOrder(data) {
     commune: (data.commune || data.wilaya || '').trim(),
     communeId: (data.communeId || '').trim(),
     deliveryMethod: method,
-    desk: (data.desk || '').trim(),
+    desk: method === 'stopdesk' ? ((data.desk || '').trim() || data.wilaya.trim()) : (data.desk || '').trim(),
     deskId: (data.deskId || '').trim(),
     address: data.address.trim(),
     notes: (data.notes || '').trim(),
