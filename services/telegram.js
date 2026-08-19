@@ -1,14 +1,10 @@
 const TELEGRAM_API = 'https://api.telegram.org/bot'
 
 function formatMessage(order) {
-  const qty = order.quantity || 1
   const lines = [
     '--------------------------------',
     '🔥 NEW ORDER - Trendy Store',
     '--------------------------------',
-    '',
-    `🛍 Product: ${order.productName}`,
-    `📦 Quantity: ${qty}`,
     '',
     `👤 Customer: ${order.customerName}`,
     `📱 Phone: ${order.phoneNumber}`,
@@ -19,15 +15,27 @@ function formatMessage(order) {
     `🏠 Address: ${order.address}`,
     `📝 Notes: ${order.notes || '—'}`,
     '',
-    `💰 Unit Price: ${order.productPrice.toLocaleString()} DA`,
-    `🚚 Delivery Price: ${order.deliveryPrice.toLocaleString()} DA`,
-    `💵 Total: ${order.totalPrice.toLocaleString()} DA`,
-    '',
-    `📦 Status: ${order.orderStatus}`,
-    '',
-    `🕒 Date: ${new Date(order.orderDate).toLocaleString('en-DZ')}`,
-    '--------------------------------',
   ]
+
+  // Multi-item support
+  const items = Array.isArray(order.items) && order.items.length > 0 ? order.items : [
+    { name: order.productName, quantity: order.quantity || 1, unitPrice: order.productPrice, subtotal: order.productPrice }
+  ]
+
+  lines.push('📦 Products:')
+  items.forEach((item, i) => {
+    lines.push(`${i + 1}. ${item.name}`)
+    lines.push(`   ${item.quantity} × ${Number(item.unitPrice).toLocaleString()} DA = ${Number(item.subtotal).toLocaleString()} DA`)
+  })
+  lines.push('')
+
+  lines.push(`🚚 Delivery: ${Number(order.deliveryPrice).toLocaleString()} DA`)
+  lines.push(`💵 Total: ${Number(order.totalPrice).toLocaleString()} DA`)
+  lines.push('')
+  lines.push(`📦 Status: ${order.orderStatus}`)
+  lines.push('')
+  lines.push(`🕒 Date: ${new Date(order.orderDate).toLocaleString('en-DZ')}`)
+  lines.push('--------------------------------')
 
   return lines.join('\n')
 }

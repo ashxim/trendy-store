@@ -78,6 +78,16 @@
   }
   .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 38px -10px rgba(124,58,237,0.65); }
   .btn-primary:active{ transform: translateY(0) scale(0.98); }
+  .btn-primary.hero-cta{
+    padding: 16px 38px; font-size: 16px; font-weight: 800;
+    box-shadow: 0 16px 40px -8px rgba(124,58,237,0.65);
+    animation: ctaPulse 3s ease-in-out infinite;
+  }
+  .btn-primary.hero-cta:hover{ transform: translateY(-3px) scale(1.03); box-shadow: 0 22px 50px -8px rgba(124,58,237,0.7); }
+  @keyframes ctaPulse{
+    0%, 100%{ box-shadow: 0 16px 40px -8px rgba(124,58,237,0.65); }
+    50%{ box-shadow: 0 16px 50px -4px rgba(124,58,237,0.8); }
+  }
   .btn-primary .ripple{
     position: absolute; border-radius: 50%; background: rgba(255,255,255,0.4);
     transform: scale(0); animation: rippleAnim 0.6s ease-out; pointer-events: none;
@@ -163,6 +173,10 @@
   @keyframes sparkleTwinkle{
     0%, 100%{ opacity: 0.1; transform: scale(0.4); }
     50%{ opacity: 0.9; transform: scale(1.15); }
+  }
+  @keyframes fadeUp{
+    from{ opacity: 0; transform: translateY(20px); }
+    to{ opacity: 1; transform: translateY(0); }
   }
   .eyebrow{
     font-family: var(--font-mono); direction: ltr; unicode-bidi: isolate;
@@ -252,11 +266,73 @@
   .pc-price-row{ display: flex; align-items: baseline; gap: 8px; margin: 10px 0 12px; }
   .pc-price{ font-family: var(--font-display); font-weight: 800; font-size: 16.5px; color: var(--purple-dark); }
   .pc-old{ font-size: 12px; text-decoration: line-through; color: var(--ink-dim); }
-  .pc-cta{ margin-top: auto; align-self: flex-start; }
+  .pc-cta{
+    margin-top: auto; align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    color: #fff; font-weight: 700; font-size: 13px;
+    padding: 10px 22px; border-radius: 999px;
+    transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px -8px rgba(124,58,237,0.5);
+  }
+  .pc-cta:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(124,58,237,0.6); }
   .pc-bundle-teaser{
     display: block; margin: -6px 0 10px;
     font-size: 11.5px; font-weight: 600; color: #B8860B;
   }
+
+  /* ---------- Product picker (order section) ---------- */
+  .picker-row{
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 12px;
+    border: 1.5px solid var(--hairline); background: var(--surface);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .picker-row.has-qty{ border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.03); }
+  .picker-img{ width: 44px; height: 44px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+  .picker-img img{ width: 100%; height: 100%; object-fit: cover; }
+  .picker-info{ flex: 1; min-width: 0; }
+  .picker-name{ font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .picker-price{ font-size: 11px; color: var(--ink-dim); margin-top: 1px; }
+  .picker-qty{ display: flex; align-items: center; background: var(--surface-2); border: 1px solid rgba(124,58,237,0.14); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+  .picker-qty button{
+    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 600; color: var(--purple-dark); background: transparent;
+    border: none; cursor: pointer; transition: background 0.2s ease;
+  }
+  .picker-qty button:hover{ background: var(--purple-soft); }
+  .picker-qty span{ min-width: 24px; text-align: center; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .picker-subtotal{ font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--purple-dark); flex-shrink: 0; white-space: nowrap; min-width: 70px; text-align: left; }
+
+  /* ---------- Cart items (multi-product order) ---------- */
+  .cart-item{
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px; border-radius: 12px;
+    border: 1px solid var(--hairline); background: var(--surface);
+    transition: border-color 0.25s ease;
+  }
+  .cart-item:hover{ border-color: rgba(124,58,237,0.2); }
+  .cart-item-img{ width: 48px; height: 48px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+  .cart-item-img img{ width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-info{ flex: 1; min-width: 0; }
+  .cart-item-name{ font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cart-item-price{ font-size: 11px; color: var(--ink-dim); margin-top: 2px; }
+  .cart-item-qty{ display: flex; align-items: center; background: var(--surface-2); border: 1px solid rgba(124,58,237,0.14); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+  .cart-item-qty button{
+    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 600; color: var(--purple-dark); background: transparent;
+    border: none; cursor: pointer; transition: background 0.2s ease;
+  }
+  .cart-item-qty button:hover{ background: var(--purple-soft); }
+  .cart-item-qty span{ min-width: 26px; text-align: center; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .cart-item-remove{
+    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(220,38,38,0.08); color: #DC2626;
+    font-size: 14px; transition: background 0.2s ease; flex-shrink: 0;
+  }
+  .cart-item-remove:hover{ background: rgba(220,38,38,0.18); }
+  .cart-item-subtotal{ font-family: var(--font-display); font-weight: 800; font-size: 14px; color: var(--purple-dark); flex-shrink: 0; white-space: nowrap; }
 
   /* ---------- Offers / Promotions (dark band — the only dark section) ---------- */
   .offers-band{
@@ -568,7 +644,7 @@
             سيروم مغذي لتطويل وتكثيف الرموش. تركيبة متطورة تمنحك رموشًا أطول وأكثر كثافة خلال أسابيع، مع عناية لطيفة كل يوم.
           </p>
           <div class="flex items-center justify-center md:justify-start gap-5 mb-6">
-            <a href="#order" class="btn-primary">اطلبي الآن</a>
+            <a href="#order" class="btn-primary hero-cta">اطلبي الآن</a>
             <a href="#reviews" class="text-link">شاهدي النتائج</a>
           </div>
           <div class="text-sm" style="color:var(--ink-dim);">
@@ -591,6 +667,17 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTS ============ -->
+  <section id="products" class="py-14 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="reveal mb-8">
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold" style="color:var(--ink);">منتجاتنا</h2>
+        <p class="text-sm mt-1" style="color:var(--ink-dim);">اختاري منتجك، والدفع عند الاستلام.</p>
+      </div>
+      <div class="product-grid" id="productsGrid"></div>
     </div>
   </section>
 
@@ -624,7 +711,7 @@
             <span id="featuredReviews"> أكثر من 1,200 تقييم</span>
           </div>
           <div class="flex flex-wrap items-center gap-4 mt-7">
-            <a href="#order" data-order="biowaqua" class="btn-primary">اطلبي الآن</a>
+            <button type="button" data-order="biowaqua" class="btn-primary hero-cta">اطلبي الآن <span style="margin-right:4px;">←</span></button>
             <span class="text-xs" style="color:var(--ink-dim);">الدفع عند الاستلام</span>
           </div>
         </div>
@@ -641,17 +728,6 @@
         <p class="text-sm" style="color:rgba(255,255,255,0.65);">استفيدي من عروضنا الحالية — خصومات حقيقية لفترة محدودة.</p>
       </div>
       <div id="offersList" class="space-y-6"></div>
-    </div>
-  </section>
-
-  <!-- ============ PRODUCTS ============ -->
-  <section id="products" class="py-14 md:py-24">
-    <div class="max-w-6xl mx-auto px-5 md:px-8">
-      <div class="reveal mb-8">
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold" style="color:var(--ink);">منتجاتنا</h2>
-        <p class="text-sm mt-1" style="color:var(--ink-dim);">اختاري منتجك، والدفع عند الاستلام.</p>
-      </div>
-      <div class="product-grid" id="productsGrid"></div>
     </div>
   </section>
 
@@ -709,20 +785,17 @@
 
       <form id="orderForm" class="order-form reveal-scale">
 
-        <div class="field">
-          <label>اختاري المنتج</label>
-          <div class="pick-list" id="productPicks"></div>
+        <!-- Product Selection -->
+        <div id="cartSection" class="mb-4">
+          <label style="display:block; margin-bottom:8px; font-size:12.5px; font-weight:600; color:var(--ink);">اختاري منتجاتك</label>
+          <div id="productPicker" class="space-y-2"></div>
+          <p id="cartError" class="hidden text-center text-sm py-2" style="color:#DC2626; font-weight:500;">الرجاء إضافة منتج واحد على الأقل.</p>
         </div>
-
-        <div class="qty-row">
-          <span>الكمية</span>
-          <div class="qty-wrap">
-            <button type="button" class="qty-btn" id="qtyMinus" aria-label="إنقاص الكمية">−</button>
-            <span class="qty-val" id="qtyDisplay">1</span>
-            <button type="button" class="qty-btn" id="qtyPlus" aria-label="زيادة الكمية">+</button>
-          </div>
+        <!-- Selected Products -->
+        <div id="cartSection2" class="mb-4 hidden">
+          <label style="display:block; margin-bottom:8px; font-size:12.5px; font-weight:600; color:var(--ink);">المنتجات المختارة</label>
+          <div id="cartItems" class="space-y-2"></div>
         </div>
-        <p id="bundleQtyHint" class="bundle-hint hidden"></p>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="field">
@@ -789,19 +862,11 @@
         </div>
 
         <div id="summarySection" class="hidden order-summary mb-4">
-          <div class="sum-row">
-            <span class="sum-label">المنتج</span>
-            <span class="sum-value" id="summaryProduct">—</span>
+          <div id="summaryItems"></div>
+          <div class="sum-row" style="border-top:2px solid rgba(124,58,237,0.16); padding-top:9px; margin-top:3px;">
+            <span class="sum-label">المجموع الفرعي</span>
+            <span class="sum-value" id="subtotalDisplay">—</span>
           </div>
-          <div class="sum-row">
-            <span class="sum-label">الكمية</span>
-            <span class="sum-value" id="summaryQty">1</span>
-          </div>
-          <div class="sum-row">
-            <span class="sum-label">سعر الوحدة</span>
-            <span class="sum-value" id="summaryUnitPrice">—</span>
-          </div>
-          <p id="bundleSummaryNote" class="bundle-hint hidden"></p>
           <div class="sum-row">
             <span class="sum-label">التوصيل</span>
             <span class="sum-value" id="deliveryPriceDisplay">—</span>
@@ -1142,19 +1207,13 @@
     fillStatic();
     productsGrid.innerHTML = "";
     visibleProducts().forEach(p => { productsGrid.insertAdjacentHTML("beforeend", cardHTML(p)); });
-    selectedProduct = visibleProducts().find(p => p.id === selectedProduct.id) || featured;
-    if (selectedBundle){
-      const b = bundleOf(selectedProduct);
-      selectedBundle = b && b.qty === selectedBundle.qty && b.price === selectedBundle.price ? b : null;
-    }
-    if (selectedBundle){
-      quantity = selectedBundle.qty;
-    } else {
-      quantity = 1;
-    }
-    qtyDisplay.textContent = quantity;
-    syncQtyRow();
-    renderPicks();
+    // Re-sync cart items with updated catalog data
+    cart.forEach(function(item){
+      var updated = visibleProducts().find(function(p){ return p.id === item.product.id; });
+      if (updated) item.product = updated;
+    });
+    renderProductPicker();
+    renderCart();
     renderOffers();
     updateSummary();
   }
@@ -1193,7 +1252,7 @@
             (crossed ? '<span class="pc-old">' + fmt(crossed) + '</span>' : "") +
           '</div>' +
           (b ? '<span class="pc-bundle-teaser">🔥 ' + b.qty + ' بسعر ' + fmt(b.price) + ' — وفري ' + fmt(b.save) + '</span>' : "") +
-          '<button type="button" data-order="' + p.id + '" class="pc-cta text-link">' + (b ? 'اطلبيها منفردة' : 'اطلبي الآن') + ' <span aria-hidden="true">←</span></button>' +
+          '<button type="button" data-order="' + p.id + '" class="pc-cta">' + (b ? 'اطلبيها منفردة' : 'اطلبي الآن') + ' <span aria-hidden="true">←</span></button>' +
         '</div>' +
       '</article>'
     );
@@ -1270,37 +1329,22 @@
     if (navLink) navLink.classList.remove("hidden");
   }
 
-  function pickOrderHandler(e){
-    const btn = e.target.closest("[data-order]");
-    if (!btn) return;
-    const prod = PRODUCTS.find(p => p.id === btn.dataset.order);
-    if (!prod) return;
-    if (btn.dataset.bundle){
-      const b = bundleOf(prod);
-      if (b) selectProduct(prod, b);
-    } else {
-      selectProduct(prod, null);
-    }
-    $("order").scrollIntoView({ behavior: "smooth" });
-  }
   const productsGrid = $("productsGrid");
   visibleProducts().forEach(p => { productsGrid.insertAdjacentHTML("beforeend", cardHTML(p)); });
-  $("offersList").addEventListener("click", pickOrderHandler);
-  productsGrid.addEventListener("click", pickOrderHandler);
+  $("offersList").addEventListener("click", addToCartFromClick);
+  productsGrid.addEventListener("click", addToCartFromClick);
 
-  /* ---------- Order state ---------- */
-  let selectedProduct = featured;
-  let selectedBundle = null;   // null = single unit; otherwise fixed-price bundle offer
-  let quantity = 1;
+  /* ========== MULTI-PRODUCT CART STATE ========== */
+  let cart = [];              // [{product, bundle, qty}]
   let isSubmitting = false;
-  let selectedWilaya = null;   // { id, arabic, name }
-  let selectedCommune = null;  // { nom, wilaya_id, code_postal, has_stop_desk }
-  let selectedMethod = null;   // 'home' | 'stopdesk'
-  let selectedDesk = null;     // { name, ... } for stopdesk
+  let selectedWilaya = null;
+  let selectedCommune = null;
+  let selectedMethod = null;
+  let selectedDesk = null;
   let currentDeliveryPrice = 0;
-  let wilayaList = [];         // cached { wilaya_id, wilaya_name }
-  let feeByWilaya = {};        // wilaya_id -> { home, stopdesk }
-  let deskList = [];           // all stopdesks from API
+  let wilayaList = [];
+  let feeByWilaya = {};
+  let deskList = [];
 
   const form = $("orderForm");
   const submitBtn = $("submitBtn");
@@ -1322,8 +1366,6 @@
   const deskError = $("deskError");
   const addressField = $("addressField");
   const summarySection = $("summarySection");
-  const productPicks = $("productPicks");
-  const qtyDisplay = $("qtyDisplay");
 
   /* ---------- Arabic wilaya names keyed by wilaya_id (mapped at load) ---------- */
   const WILAYA_AR = {
@@ -1444,76 +1486,181 @@
     }
   }
 
-  /* ---------- Product picker ---------- */
-  function pickHTML(p){
-    const b = bundleOf(p);
-    const onOffer = isOfferActive(p) && !b;
-    const crossed = onOffer && p.regularPrice ? p.regularPrice : p.oldPrice;
-    let html =
-      '<button type="button" class="pick-row' + (selectedBundle ? "" : (p.id === selectedProduct.id ? " selected" : "")) + '" data-id="' + p.id + '" data-mode="single">' +
-        '<img src="' + p.image + '" alt="' + p.name + '">' +
-        '<span class="pick-info">' +
-          '<span class="pick-name">' + p.short + '</span>' +
-          '<span class="pick-meta">' + fmt(p.price) + (crossed ? ' <s style="font-size:10px;">' + fmt(crossed) + '</s>' : "") + (p.featured ? " · الأكثر طلباً" : "") + '</span>' +
-        '</span>' +
-        '<span class="pick-check">✓</span>' +
-      '</button>';
-    if (b){
-      const bundleSelected = selectedBundle && p.id === selectedProduct.id;
-      html +=
-        '<button type="button" class="pick-row pick-bundle' + (bundleSelected ? " selected" : "") + '" data-id="' + p.id + '" data-mode="bundle">' +
-          '<img src="' + (b.image || p.image) + '" alt="' + b.title + '">' +
-          '<span class="pick-info">' +
-            '<span class="pick-name">' + b.title + '</span>' +
-            '<span class="pick-meta">' + b.qty + ' حبات · ' + fmt(b.price) + ' <s style="font-size:10px;">بدل ' + fmt(unitPrice(p) * b.qty) + '</s>' + (b.save > 0 ? ' · وفري ' + fmt(b.save) : "") + '</span>' +
-          '</span>' +
-          '<span class="pick-check">✓</span>' +
-        '</button>';
+  /* ========== PRODUCT PICKER (order section) ========== */
+  function getCartQty(productId, bundleKey){
+    for (var i = 0; i < cart.length; i++){
+      var c = cart[i];
+      var ck = c.product.id + (c.bundle ? "_bundle_" + c.bundle.qty : "_single");
+      if (ck === bundleKey) return c.qty;
     }
-    return html;
+    return 0;
   }
 
-  function renderPicks(){
-    productPicks.innerHTML = "";
-    visibleProducts().forEach(p => { productPicks.insertAdjacentHTML("beforeend", pickHTML(p)); });
-    productPicks.querySelectorAll(".pick-row").forEach(row => {
-      row.addEventListener("click", function(){
-        const prod = PRODUCTS.find(p => p.id === row.dataset.id);
-        if (!prod) return;
-        selectProduct(prod, row.dataset.mode === "bundle" ? bundleOf(prod) : null);
+  function setPickerQty(productId, bundleKey, newQty){
+    var idx = -1;
+    for (var i = 0; i < cart.length; i++){
+      var c = cart[i];
+      var ck = c.product.id + (c.bundle ? "_bundle_" + c.bundle.qty : "_single");
+      if (ck === bundleKey){ idx = i; break; }
+    }
+    if (newQty <= 0){
+      if (idx >= 0) cart.splice(idx, 1);
+    } else if (idx >= 0){
+      cart[idx].qty = Math.min(10, newQty);
+    } else {
+      var prod = PRODUCTS.find(function(p){ return p.id === productId; });
+      if (!prod) return;
+      var bun = null;
+      if (bundleKey.indexOf("_bundle_") >= 0){ bun = bundleOf(prod); }
+      cart.push({ product: prod, bundle: bun, qty: bun ? bun.qty : newQty });
+    }
+    renderProductPicker();
+    renderCart();
+    updateSummary();
+  }
+
+  function renderProductPicker(){
+    var picker = $("productPicker");
+    if (!picker) return;
+    var items = [];
+    visibleProducts().forEach(function(p){
+      var b = bundleOf(p);
+      items.push({ product: p, bundle: null, key: p.id + "_single" });
+      if (b){ items.push({ product: p, bundle: b, key: p.id + "_bundle_" + b.qty }); }
+    });
+    picker.innerHTML = items.map(function(it){
+      var p = it.product;
+      var b = it.bundle;
+      var unit = b ? Math.round(b.price / b.qty) : unitPrice(p);
+      var qty = getCartQty(p.id, it.key);
+      var sub = b ? (qty > 0 ? b.price : 0) : unit * qty;
+      var label = b ? b.title : p.short;
+      var badge = b ? '<span style="font-size:10px;background:linear-gradient(135deg,#E9B949,#C99A3F);color:#2A1152;padding:2px 8px;border-radius:999px;font-weight:700;">🔥 ' + b.qty + ' بسعر ' + fmt(b.price) + '</span>' : (p.badge ? '<span style="font-size:10px;background:var(--purple-soft);color:var(--purple);padding:2px 8px;border-radius:999px;font-weight:700;">' + p.badge + '</span>' : '');
+      return (
+        '<div class="picker-row' + (qty > 0 ? ' has-qty' : '') + '" data-pk="' + it.key + '">' +
+          '<div class="picker-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
+          '<div class="picker-info">' +
+            '<div class="picker-name">' + label + '</div>' +
+            '<div class="picker-price">' + fmt(unit) + ' ' + badge + '</div>' +
+          '</div>' +
+          '<div class="picker-qty">' +
+            '<button type="button" data-pk-action="minus" data-pk-key="' + it.key + '" data-pk-id="' + p.id + '">−</button>' +
+            '<span>' + qty + '</span>' +
+            '<button type="button" data-pk-action="plus" data-pk-key="' + it.key + '" data-pk-id="' + p.id + '">+</button>' +
+          '</div>' +
+          '<span class="picker-subtotal">' + (qty > 0 ? fmt(sub) : '—') + '</span>' +
+        '</div>'
+      );
+    }).join("");
+    picker.querySelectorAll("[data-pk-action]").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        var key = btn.dataset.pkKey;
+        var pid = btn.dataset.pkId;
+        var cur = getCartQty(pid, key);
+        var delta = btn.dataset.pkAction === "plus" ? 1 : -1;
+        setPickerQty(pid, key, Math.max(0, cur + delta));
       });
     });
   }
 
-  function selectProduct(p, bundle){
-    selectedProduct = p;
-    selectedBundle = bundle || null;
-    if (selectedBundle){
-      quantity = selectedBundle.qty;
+  /* ========== MULTI-PRODUCT CART ========== */
+  function addToCart(product, bundle, qty){
+    qty = qty || 1;
+    var key = product.id + (bundle ? "_bundle_" + bundle.qty : "_single");
+    var existing = cart.find(function(c){
+      var cKey = c.product.id + (c.bundle ? "_bundle_" + c.bundle.qty : "_single");
+      return cKey === key;
+    });
+    if (existing){
+      if (!bundle) existing.qty = Math.min(10, existing.qty + qty);
     } else {
-      quantity = 1;
+      cart.push({ product: product, bundle: bundle || null, qty: bundle ? bundle.qty : qty });
     }
-    qtyDisplay.textContent = quantity;
-    syncQtyRow();
-    renderPicks();
+    renderProductPicker();
+    renderCart();
     updateSummary();
   }
 
-  function syncQtyRow(){
-    const row = document.querySelector(".qty-row");
-    if (!row) return;
-    row.classList.toggle("hidden", !!selectedBundle);
-  }
-
-  /* ---------- Quantity ---------- */
-  function setQuantity(q){
-    if (selectedBundle) return;
-    quantity = Math.min(10, Math.max(1, q));
-    qtyDisplay.textContent = quantity;
+  function removeFromCart(index){
+    cart.splice(index, 1);
+    renderProductPicker();
+    renderCart();
     updateSummary();
   }
-  $("qtyMinus").addEventListener("click", function(){ setQuantity(quantity - 1); });
-  $("qtyPlus").addEventListener("click", function(){ setQuantity(quantity + 1); });
+
+  function updateCartQty(index, delta){
+    var item = cart[index];
+    if (!item) return;
+    if (item.bundle){
+      item.qty = item.bundle.qty;
+    } else {
+      item.qty = Math.min(10, Math.max(0, item.qty + delta));
+    }
+    if (item.qty <= 0){
+      removeFromCart(index);
+      return;
+    }
+    renderProductPicker();
+    renderCart();
+    updateSummary();
+  }
+
+  function addToCartFromClick(e){
+    var btn = e.target.closest("[data-order]");
+    if (!btn) return;
+    var prod = PRODUCTS.find(function(p){ return p.id === btn.dataset.order; });
+    if (!prod) return;
+    var bundle = null;
+    if (btn.dataset.bundle){ bundle = bundleOf(prod); }
+    addToCart(prod, bundle, bundle ? bundle.qty : 1);
+    $("order").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function renderCart(){
+    var container = $("cartItems");
+    var section2 = $("cartSection2");
+    if (!container) return;
+    if (!cart.length){
+      container.innerHTML = "";
+      if (section2) section2.classList.add("hidden");
+      return;
+    }
+    if (section2) section2.classList.remove("hidden");
+    container.innerHTML = cart.map(function(item, i){
+      var p = item.product;
+      var b = item.bundle;
+      var unit = b ? Math.round(b.price / b.qty) : unitPrice(p);
+      var sub = b ? b.price : unit * item.qty;
+      return (
+        '<div class="cart-item" data-idx="' + i + '">' +
+          '<div class="cart-item-img"><img src="' + p.image + '" alt="' + p.name + '"></div>' +
+          '<div class="cart-item-info">' +
+            '<div class="cart-item-name">' + (b ? b.title : p.short) + '</div>' +
+            '<div class="cart-item-price">' + fmt(unit) + (b ? ' · باقة ' + b.qty : '') + '</div>' +
+          '</div>' +
+          (b
+            ? '<span style="font-size:12px;color:var(--purple);font-weight:700;">×' + b.qty + '</span>'
+            : '<div class="cart-item-qty">' +
+                '<button type="button" data-action="minus" data-i="' + i + '">−</button>' +
+                '<span>' + item.qty + '</span>' +
+                '<button type="button" data-action="plus" data-i="' + i + '">+</button>' +
+              '</div>'
+          ) +
+          '<span class="cart-item-subtotal">' + fmt(sub) + '</span>' +
+          '<button type="button" class="cart-item-remove" data-action="remove" data-i="' + i + '" title="إزالة">✕</button>' +
+        '</div>'
+      );
+    }).join("");
+    container.querySelectorAll("[data-action]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var i = Number(btn.dataset.i);
+        if (btn.dataset.action === "minus") updateCartQty(i, -1);
+        else if (btn.dataset.action === "plus") updateCartQty(i, 1);
+        else if (btn.dataset.action === "remove") removeFromCart(i);
+      });
+    });
+  }
 
   /* ---------- Delivery method (receive) ---------- */
   function renderReceiveOptions(){
@@ -1628,7 +1775,7 @@
     }
     const fee = feeByWilaya[selectedWilaya.id] || {};
     currentDeliveryPrice = Number(fee.home) > 0 ? Number(fee.home) : 0;
-    summarySection.classList.toggle("hidden", currentDeliveryPrice <= 0);
+    summarySection.classList.toggle("hidden", !cart.length);
     updateSummary();
   }
 
@@ -1686,7 +1833,7 @@
       currentDeliveryPrice = Number(fee.stopdesk) > 0 ? Number(fee.stopdesk) : 0;
     }
     deskError.classList.add("hidden");
-    summarySection.classList.toggle("hidden", currentDeliveryPrice <= 0);
+    summarySection.classList.toggle("hidden", !cart.length);
     updateSummary();
   }
 
@@ -1694,41 +1841,34 @@
   communeSelect.addEventListener("change", onCommuneChange);
   deskSelect.addEventListener("change", onDeskChange);
 
-  /* ---------- Summary ---------- */
+  /* ---------- Summary (multi-item) ---------- */
   function updateSummary(){
-    const p = selectedProduct;
-    const b = selectedBundle;
-    const unit = b ? Math.round(b.price / b.qty) : unitPrice(p);
-    const subtotal = b ? b.price : unit * quantity;
-    const qty = b ? b.qty : quantity;
-    $("summaryProduct").textContent = b ? b.title : p.name;
-    $("summaryQty").textContent = qty;
-    $("summaryUnitPrice").textContent = b ? fmt(b.price) + " (باقة " + b.qty + ")" : fmt(unit);
-    const note = $("bundleSummaryNote");
-    if (note){
-      if (b){
-        note.classList.remove("hidden");
-        note.textContent = "🔥 عرض خاص: " + b.qty + " بسعر " + fmt(b.price) + " — وفّرتِ " + fmt(b.save);
-      } else {
-        note.classList.add("hidden");
-      }
-    }
-    const hint = $("bundleQtyHint");
-    if (hint){
-      if (b){
-        hint.classList.remove("hidden");
-        hint.textContent = "✓ الكمية مثبتة على " + b.qty + " (عرض خاص)";
-      } else {
-        hint.classList.add("hidden");
-      }
-    }
+    var itemsHtml = "";
+    var subtotal = 0;
+    cart.forEach(function(item){
+      var p = item.product;
+      var b = item.bundle;
+      var unit = b ? Math.round(b.price / b.qty) : unitPrice(p);
+      var sub = b ? b.price : unit * item.qty;
+      subtotal += sub;
+      itemsHtml +=
+        '<div class="sum-row">' +
+          '<span class="sum-label">' + (b ? b.title : p.short) + ' × ' + (b ? b.qty : item.qty) + '</span>' +
+          '<span class="sum-value">' + fmt(sub) + '</span>' +
+        '</div>';
+    });
+    var si = $("summaryItems");
+    if (si) si.innerHTML = itemsHtml;
+    var subDisplay = $("subtotalDisplay");
+    if (subDisplay) subDisplay.textContent = cart.length ? fmt(subtotal) : "—";
     if (currentDeliveryPrice > 0){
       $("deliveryPriceDisplay").textContent = fmt(currentDeliveryPrice);
       $("totalPriceDisplay").textContent = fmt(subtotal + currentDeliveryPrice);
     } else {
-      $("deliveryPriceDisplay").textContent = "—";
-      $("totalPriceDisplay").textContent = fmt(subtotal);
+      $("deliveryPriceDisplay").textContent = cart.length ? "—" : "—";
+      $("totalPriceDisplay").textContent = cart.length ? fmt(subtotal) : "—";
     }
+    summarySection.classList.toggle("hidden", !cart.length);
   }
 
   /* ---------- Validation ---------- */
@@ -1752,10 +1892,14 @@
     if (needAddress){ setFieldError(form.address.closest(".field"), address.length < 5); }
     if (!selectedMethod){ receiveError.classList.remove("hidden"); } else { receiveError.classList.add("hidden"); }
     if (isOffice && !selectedDesk){ deskError.classList.remove("hidden"); } else { deskError.classList.add("hidden"); }
-    return !(firstName.length < 2 || lastName.length < 2 || phone.replace(/\D/g, "").length < 8 || (needAddress && address.length < 5) || !wilaya || (isHome && !selectedCommune) || (isOffice && !selectedDesk) || !selectedMethod);
+    var cartError = $("cartError");
+    if (cartError){
+      if (!cart.length){ cartError.classList.remove("hidden"); } else { cartError.classList.add("hidden"); }
+    }
+    return !(firstName.length < 2 || lastName.length < 2 || phone.replace(/\D/g, "").length < 8 || (needAddress && address.length < 5) || !wilaya || (isHome && !selectedCommune) || (isOffice && !selectedDesk) || !selectedMethod || !cart.length);
   }
 
-  /* ---------- Submit ---------- */
+  /* ---------- Submit (multi-item) ---------- */
   form.addEventListener("submit", async function(e){
     e.preventDefault();
     if (isSubmitting) return;
@@ -1770,15 +1914,23 @@
     submitLabel.appendChild(spin);
     submitLabel.append(" جارٍ إرسال الطلب...");
 
-    const b = selectedBundle;
-    const baseName = selectedProduct.short || selectedProduct.name;
-    const unit = b ? Math.round(b.price / b.qty) : unitPrice(selectedProduct);
-    const orderQty = b ? b.qty : quantity;
-    const productPrice = b ? b.price : unit;
-    const totalPrice = productPrice + currentDeliveryPrice;
-    const productName = b ? (baseName + " — Bundle " + b.qty) : (baseName + " — Single");
-    const isOffice = selectedMethod === "stopdesk";
-    const payload = {
+    var items = cart.map(function(item){
+      var p = item.product;
+      var b = item.bundle;
+      var unit = b ? Math.round(b.price / b.qty) : unitPrice(p);
+      var qty = b ? b.qty : item.qty;
+      return {
+        name: b ? b.title : (p.short || p.name),
+        quantity: qty,
+        unitPrice: unit,
+        subtotal: b ? b.price : unit * qty
+      };
+    });
+    var productsTotal = items.reduce(function(s, it){ return s + it.subtotal; }, 0);
+    var productsDisplay = items.map(function(it){ return it.name + " ×" + it.quantity; }).join(", ");
+    var totalPrice = productsTotal + currentDeliveryPrice;
+    var isOffice = selectedMethod === "stopdesk";
+    var payload = {
       customerName: form.firstName.value.trim() + " " + form.lastName.value.trim(),
       phoneNumber: form.phone.value.trim(),
       wilaya: selectedWilaya ? selectedWilaya.arabic : wilayaSelect.value,
@@ -1790,11 +1942,12 @@
       deskId: isOffice && selectedDesk ? (selectedDesk.map || selectedDesk.name) : "",
       address: isOffice && selectedDesk ? (selectedDesk.adresse || selectedDesk.name) : form.address.value.trim(),
       notes: form.notes.value.trim(),
-      productName: productName,
-      productPrice: productPrice,
+      productName: productsDisplay,
+      productPrice: productsTotal,
       deliveryPrice: currentDeliveryPrice,
       totalPrice: totalPrice,
-      quantity: orderQty,
+      quantity: items.reduce(function(s, it){ return s + it.quantity; }, 0),
+      items: items
     };
 
     try {
@@ -1828,13 +1981,11 @@
 
   /* ---------- Init ---------- */
   fillStatic();
-  renderPicks();
-  syncQtyRow();
+  renderProductPicker();
+  renderCart();
   updateSummary();
   renderReceiveOptions();
   loadDeliveryData();
-  // Offers render once the remote catalog resolves (or the API fails and we keep
-  // the built-in defaults) — avoids a flash of demo offers that then disappear.
   loadRemoteProducts();
   loadSettings();
 })();

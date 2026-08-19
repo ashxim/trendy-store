@@ -43,6 +43,7 @@
   }
   .btn-primary{ background:linear-gradient(135deg, var(--purple), var(--purple-dark)); color:#fff; }
   .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 22px -8px rgba(124,58,237,.5); }
+  .btn-primary:disabled{ opacity:0.6; cursor:not-allowed; transform:none; box-shadow:none; }
   .btn-ghost{ background:#fff; color:var(--purple-dark); border:1.5px solid rgba(124,58,237,.3); }
   .btn-ghost:hover{ background:var(--purple-soft); }
   .btn-danger{ background:#fff; color:#DC2626; border:1.5px solid rgba(220,38,38,.3); }
@@ -133,8 +134,12 @@
     <p class="text-xs mb-6" style="color:var(--ink-dim);">أدخل رمز الإدارة للوصول إلى المنتجات.</p>
     <div class="field">
       <label>رمز الإدارة</label>
-      <input type="password" id="loginToken" placeholder="ADMIN_TOKEN">
+      <div style="position:relative;">
+        <input type="password" id="loginToken" placeholder="ADMIN_TOKEN" style="padding-left:42px;">
+        <button type="button" id="togglePass" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:18px; padding:4px; color:var(--ink-dim);" aria-label="إظهار/إخفاء الرمز">👁</button>
+      </div>
     </div>
+    <p id="loginError" style="display:none; color:#DC2626; font-size:12px; font-weight:600; margin-bottom:10px; text-align:center;"></p>
     <button class="btn btn-primary w-full" id="loginBtn">دخول</button>
     <p class="text-[11px] mt-4 text-center" style="color:var(--ink-dim);">الرمز هو قيمة ADMIN_TOKEN في إعدادات المشروع.</p>
   </div>
@@ -431,18 +436,69 @@
     $("dashView").classList.remove("hidden");
   }
 
-  $("loginBtn").addEventListener("click", function(){
+  /* ---------- Show / hide password ---------- */
+  let passVisible = false;
+  $("togglePass").addEventListener("click", function(){
+    passVisible = !passVisible;
+    $("loginToken").type = passVisible ? "text" : "password";
+    this.textContent = passVisible ? "🙈" : "👁";
+    this.setAttribute("aria-label", passVisible ? "إخفاء الرمز" : "إظهار الرمز");
+  });
+
+  /* ---------- Login with server-side verification ---------- */
+  function showLoginError(msg){
+    const el = $("loginError");
+    el.textContent = msg;
+    el.style.display = "block";
+  }
+  function hideLoginError(){
+    $("loginError").style.display = "none";
+  }
+
+  async function verifyAndLogin(enteredToken){
+    hideLoginError();
+    const btn = $("loginBtn");
+    btn.disabled = true;
+    btn.textContent = "جارٍ التحقق…";
+    try {
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: enteredToken }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.valid){
+        showLoginError(json.error || "الرمز غير صحيح. حاول مجددًا.");
+        return false;
+      }
+      token = enteredToken;
+      sessionStorage.setItem(TOKEN_KEY, token);
+      showDash();
+      loadProducts();
+      loadSettings();
+      return true;
+    } catch (e){
+      showLoginError("تعذّر الاتصال بالخادم. تحقق من الاتصال وحاول مجددًا.");
+      return false;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "دخول";
+    }
+  }
+
+  $("loginBtn").addEventListener("click", async function(){
     const value = $("loginToken").value.trim();
-    if (!value){ showToast("أدخل رمز الإدارة", true); return; }
-    token = value;
-    sessionStorage.setItem(TOKEN_KEY, token);
-    showDash();
-    loadProducts();
+    if (!value){
+      showLoginError("الرجاء إدخال رمز الإدارة.");
+      return;
+    }
+    await verifyAndLogin(value);
   });
 
   $("loginToken").addEventListener("keydown", function(e){
     if (e.key === "Enter") $("loginBtn").click();
   });
+  $("loginToken").addEventListener("input", hideLoginError);
 
   $("logoutBtn").addEventListener("click", function(){
     token = "";
@@ -1130,7 +1186,20 @@
   }
 
   /* ---------- Init ---------- */
-  if (token){ showDash(); loadProducts(); loadSettings(); } else { showLogin(); }
+  (async function init(){
+    if (token){
+      /* Verify stored session token against the server before trusting it */
+      const verified = await verifyAndLogin(token);
+      if (!verified){
+        token = "";
+        sessionStorage.removeItem(TOKEN_KEY);
+        showLogin();
+        showLoginError("انتهت الجلسة أو الرمز غير صحيح. سجّلي الدخول مجددًا.");
+      }
+    } else {
+      showLogin();
+    }
+  })();
 })();
 </script>
 </body>

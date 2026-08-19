@@ -51,6 +51,24 @@ export function validateOrder(data) {
     }
   }
 
+  // Multi-item: validate items array if present
+  if (data.items && Array.isArray(data.items)) {
+    data.items.forEach((item, idx) => {
+      if (!item.name || String(item.name).trim().length === 0) {
+        errors.push('items[' + idx + '].name')
+      }
+      if (item.quantity !== undefined) {
+        const qty = Number(item.quantity)
+        if (!Number.isInteger(qty) || qty < 1 || qty > 99) {
+          errors.push('items[' + idx + '].quantity')
+        }
+      }
+      if (item.unitPrice !== undefined && (Number(item.unitPrice) < 0)) {
+        errors.push('items[' + idx + '].unitPrice')
+      }
+    })
+  }
+
   return {
     valid: errors.length === 0,
     errors,
@@ -78,5 +96,11 @@ export function sanitizeOrder(data) {
     quantity: Math.min(99, Math.max(1, parseInt(data.quantity, 10) || 1)),
     orderDate: new Date().toISOString(),
     orderStatus: 'Pending',
+    items: Array.isArray(data.items) ? data.items.map(item => ({
+      name: String(item.name || '').trim(),
+      quantity: Math.min(99, Math.max(1, parseInt(item.quantity, 10) || 1)),
+      unitPrice: Math.max(0, Number(item.unitPrice) || 0),
+      subtotal: Math.max(0, Number(item.subtotal) || 0),
+    })) : [],
   }
 }

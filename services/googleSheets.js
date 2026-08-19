@@ -6,6 +6,12 @@ export async function saveToGoogleSheets(order) {
     return false
   }
 
+  // Format multi-item for sheets display
+  const items = Array.isArray(order.items) && order.items.length > 0 ? order.items : [
+    { name: order.productName, quantity: order.quantity || 1, unitPrice: order.productPrice, subtotal: order.productPrice }
+  ]
+  const itemsDisplay = items.map((it, i) => `${i + 1}. ${it.name} (${it.quantity}×${it.unitPrice}=${it.subtotal})`).join('\n')
+
   const payload = {
     customerName: order.customerName,
     phoneNumber: "'" + order.phoneNumber,
@@ -24,6 +30,7 @@ export async function saveToGoogleSheets(order) {
     totalPrice: String(order.totalPrice),
     quantity: String(order.quantity || 1),
     orderStatus: order.orderStatus || 'New',
+    items: itemsDisplay,
   }
 
   console.log('[GoogleSheets] Sending order:', JSON.stringify(payload))
